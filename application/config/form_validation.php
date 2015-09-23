@@ -15,5 +15,25 @@ $config = array(
 					'rules' => 'required',
 					'errors' => array('required' => "Tolong isikan %s Anda.")
 			)
-	)	
+	),
+	'api/getDataAPI' => array(
+			array(
+					'field' => 'server',
+					'label' => 'Server',
+					'rules' => 'required',
+					'errors' => array('required' => "Tolong pilih %s yang Anda inginkan.")
+			),
+			array(
+					'field' => 'searchBy',
+					'label' => 'Kategori',
+					'rules' => 'required',
+					'errors' => array('required' => "Tolong Pilih %s yang Anda inginkan.")
+			),
+			array(
+					'field' => 'seacrh',
+					'label' => 'Kata Kunci',
+					'rules' => 'required',
+					'errors' => array('required' => "Tolong Isikan %s yang Anda inginkan.")
+			)
+	)
 );

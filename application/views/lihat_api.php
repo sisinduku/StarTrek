@@ -48,6 +48,17 @@
 									<!-- /input-group -->
 								</td>
 							</tr>
+							<tr>
+								<td colspan="6">
+									<?php 
+									if(! empty ( validation_errors() )){
+										echo "<div class= \"alert alert-danger\"><ol type='1'>";
+										if(! empty ( validation_errors() )) echo validation_errors('<li>', '</li>');
+										echo "</ol></div>";
+									}
+									?>
+								</td>
+							</tr>
 						</table>
 					</form>
 				</div>

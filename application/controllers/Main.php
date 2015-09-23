@@ -22,12 +22,16 @@ class Main extends CI_Controller{
 		if(isset($_POST['submit'])){
 			$data['pageTitle'] = "Lihat API | StarTrek";
 			$data['pageHeader'] = "Lihat Access Point";
-			$data['useTables'] = true;
-			$this->load->model("api");
-			$data['daftarDevice']["jatengjogja"] = $this->api->getDataAPI($device);
-			$data['daftarDevice']["jogjapartnership"] = $this->api->getDataAPI($device);
-			
-			$this->load->template("lihat_api", $data);
+			if($this->form_validation->run() == FALSE){
+				$this->load->template("lihat_api", $data);
+			}else{
+				$data['useTables'] = true;
+				$this->load->model("api");
+				$data['daftarDevice']["jatengjogja"] = $this->api->getDataAPI($device);
+				$data['daftarDevice']["jogjapartnership"] = $this->api->getDataAPI($device);
+					
+				$this->load->template("lihat_api", $data);
+			}
 		}else{
 			$data['pageTitle'] = "Lihat API | StarTrek";
 			$data['pageHeader'] = "Lihat Access Point";
