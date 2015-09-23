@@ -1,16 +1,31 @@
 <?php
+/**
+ * @author Ketampanan
+ * Kelas yang berisi abstraksi dari API
+ */
 class Api extends CI_Model {
+	private $server, $searchBy, $searchQuery;
 	
 	public function __construct() {
 		// Call the CI_Model constructor
 		parent::__construct ();
 	}
 	
-	public function getDataAPI($device, $ip) {
+	/**
+	 * Fungsi untuk mengambil data dari API
+	 * @param string $device | Kode device : AP atau alarm
+	 * @return $msg <multitype:boolean number string , multitype:boolean number unknown >
+	 * 			Jika sukses menghasilkan array dengan elemen type, code, msg, list_data
+	 * 			$msg['list_data']['data'] berisi object hasil parse dari XML
+	 */
+	public function getDataAPI($device) {
+		$this->server = $this->input->post('server');
+		$this->searchBy = $this->input->post('searchBy');
+		$this->searchQuery = $this->input->post('seacrh');
 		
 		$username = "myApi";
 		$password = "Fire.w0rK";
-		$url = "https://$ip/webacs/j_spring_security_check";
+		$url = "https://$this->server/webacs/j_spring_security_check";
 		$ch = curl_init ();
 		curl_setopt ( $ch, CURLOPT_URL, $url );
 		curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 0 );
@@ -34,13 +49,13 @@ class Api extends CI_Model {
 					"msg" => $curl_error 
 			);
 		} else {
-			// $msg = array("type"=>true, "code"=>0, "msg"=>"success");
 			switch ($device) {
 				case "ap" :
-					$nexturl = "https://$ip/webacs/api/v1/data/AccessPoints?.full=true&.firstResult=0&.maxResults=1000";
+					$nexturl = "https://$this->server/webacs/api/v1/data/AccessPoints?.full=true&.firstResult=0&.maxResults=1000&$this->searchBy=contains(\"$this->searchQuery\")";
 					break;
 				case "alarm" :
-					$nexturl = "https://$ip/webacs/api/v1/data/Alarms?.full=true&.firstResult=0&.maxResults=999";
+					//Nanti dulu
+					$nexturl = "https://$this->server/webacs/api/v1/data/Alarms?.full=true&.firstResult=0&.maxResults=999";
 					break;
 			}
 			
@@ -60,7 +75,7 @@ class Api extends CI_Model {
 					$dataxml = simplexml_load_string ( $data );
 					switch ($device) {
 						case "ap" :
-							$arr_dat ['title'] = $ip;
+							$arr_dat ['title'] = $this->server;
 							$arr_dat ['data'] = array ();
 							$i = 0;
 							$down = 0;
@@ -75,6 +90,7 @@ class Api extends CI_Model {
 								$row->accessPointsDTO->location = str_replace ( ";", "\n", $row->accessPointsDTO->location );
 								if ($dataxml->children ()) {
 									if (empty ( $row->accessPointsDTO->controllerName )) {
+										// Kalo down dikasi nama down sama backgroundnya merah
 										$row->accessPointsDTO->controllerName = "DOWN";
 										$row->accessPointsDTO->background = "#c62828";
 										$down ++;
@@ -102,7 +118,7 @@ class Api extends CI_Model {
 							}
 							break;
 						case "alarm" :
-							$arr_dat ['title'] = $ip;
+							$arr_dat ['title'] = $this->server;
 							$arr_dat ['data'] = array ();
 							$stat = true;
 							foreach ( $dataxml->children () as $row ) {
@@ -141,18 +157,5 @@ class Api extends CI_Model {
 		}
 		curl_close ( $ch );
 		return $msg;
-	}
-	
-	public function getDataList($device, $ip){
-		$listData = $this->getDataAPI($device, $ip);
-		$result = array();
-		$index = 0;
-		
-		if ($listData["type"]){
-			foreach ($listData["list_data"]["data"] as $data){
-				$result[$index++] = $data;
-			}
-		}
-		return $result;
 	}
 }

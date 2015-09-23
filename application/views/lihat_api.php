@@ -5,7 +5,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<form method="POST" action="<?php echo site_url("main/lihat_api/ap");?>">
-						<table border=0 class="table">
+						<table class="table">
 							<tr>
 								<th colspan="6">Pilih Server:
 								
@@ -77,7 +77,7 @@
 						<!-- DataTables Jateng Jogja -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Cisco Sindokom (10.16.254.70) <?php //echo $daftarDevice["jatengjogja"]["msg"];?></h3>
+								<h3 class="panel-title">Cisco Sindokom (10.16.254.70) <?php echo $daftarDevice["jatengjogja"]["msg"];?></h3>
 							</div>
 							<div class="panel-body">
 								<div class="dataTable_wrapper">
@@ -136,7 +136,7 @@
 						<!-- DataTables Jogja Partnership -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Cisco Partnership (10.16.55.196) <?php //echo $daftarDevice["jogjapartnership"]["msg"];?></h3>
+								<h3 class="panel-title">Cisco Partnership (10.16.55.196) <?php echo $daftarDevice["jogjapartnership"]["msg"];?></h3>
 							</div>
 							<div class="panel-body">
 								<div class="dataTable_wrapper">

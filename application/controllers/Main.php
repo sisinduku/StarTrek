@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * @author Ketampanan
+ * Kelas yang berisi halaman utama dari web StarTrek
+ */
 class Main extends CI_Controller{
 	
 	public function index(){
@@ -20,8 +24,8 @@ class Main extends CI_Controller{
 			$data['pageHeader'] = "Lihat Access Point";
 			$data['useTables'] = true;
 			$this->load->model("api");
-			//$data['daftarDevice']["jatengjogja"] = $this->api->getDataAPI($device, "10.16.254.70");
-			//$data['daftarDevice']["jogjapartnership"] = $this->api->getDataAPI($device, "10.16.55.196");
+			$data['daftarDevice']["jatengjogja"] = $this->api->getDataAPI($device);
+			$data['daftarDevice']["jogjapartnership"] = $this->api->getDataAPI($device);
 			
 			$this->load->template("lihat_api", $data);
 		}else{
