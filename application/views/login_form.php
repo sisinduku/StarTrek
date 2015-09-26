@@ -38,9 +38,10 @@
 		      <div class="modal-footer">
 		          <div class="col-md-12">
 		          <?php
-					if (!empty(validation_errors()) || !empty($errors)) {
+		          	$errString = validation_errors();
+					if (!empty($errString) || !empty($errors)) {
 						echo "<div class= \"alert alert-danger\"><ol type='1'>";
-							if(!empty(validation_errors()) ) echo validation_errors("<li>", "</li>");
+							if(!empty($errString))  echo validation_errors("<li>", "</li>");
 							if(!empty($errors)) echo "<li>".$errors."</li>";
 						echo "</ol></div>";
 					}

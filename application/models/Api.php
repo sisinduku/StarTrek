@@ -18,14 +18,16 @@ class Api extends CI_Model {
 	 * 			Jika sukses menghasilkan array dengan elemen type, code, msg, list_data
 	 * 			$msg['list_data']['data'] berisi object hasil parse dari XML
 	 */
-	public function getDataAPI($device) {
-		$this->server = $this->input->post('server');
+	// Notice: Ada tambahan parameter 'server'
+	public function getDataAPI($device, $server) {
+		$this->server = $server; //$this->input->post('server');
 		$this->searchBy = $this->input->post('searchBy');
 		$this->searchQuery = $this->input->post('seacrh');
 		
-		$username = "myApi";
-		$password = "Fire.w0rK";
-		$url = "https://$this->server/webacs/j_spring_security_check";
+		$username = "username";
+		$password = "********";
+		
+		$url = "https://{$this->server}/webacs/j_spring_security_check";
 		$ch = curl_init ();
 		curl_setopt ( $ch, CURLOPT_URL, $url );
 		curl_setopt ( $ch, CURLOPT_CONNECTTIMEOUT, 0 );
@@ -46,16 +48,17 @@ class Api extends CI_Model {
 			$msg = array (
 					"type" => false,
 					"code" => $curl_errno,
-					"msg" => $curl_error 
+					"msg" => "Auth error: ".$curl_error 
 			);
 		} else {
 			switch ($device) {
 				case "ap" :
-					$nexturl = "https://$this->server/webacs/api/v1/data/AccessPoints?.full=true&.firstResult=0&.maxResults=1000&$this->searchBy=contains(\"$this->searchQuery\")";
+					$nexturl = "https://{$this->server}/webacs/api/v1/data/AccessPoints?.full=true&.firstResult=0&.maxResults=1000&{$this->searchBy}=contains(\"{$this->searchQuery}\")";
+					//$nexturl = "http://127.0.0.1/startrek/dummy.xml";
 					break;
 				case "alarm" :
 					//Nanti dulu
-					$nexturl = "https://$this->server/webacs/api/v1/data/Alarms?.full=true&.firstResult=0&.maxResults=999";
+					$nexturl = "https://{$this->server}/webacs/api/v1/data/Alarms?.full=true&.firstResult=0&.maxResults=999";
 					break;
 			}
 			
@@ -68,7 +71,7 @@ class Api extends CI_Model {
 				$msg = array (
 						"type" => false,
 						"code" => $curl_errno,
-						"msg" => $curl_error 
+						"msg" => "Query error: ". $curl_error 
 				);
 			} else {
 				if (stripos ( $data, "xml" ) !== false) {
@@ -92,6 +95,7 @@ class Api extends CI_Model {
 									if (empty ( $row->accessPointsDTO->controllerName )) {
 										// Kalo down dikasi nama down sama backgroundnya merah
 										$row->accessPointsDTO->controllerName = "DOWN";
+										$row->accessPointsDTO->controllerIpAddress = "-";
 										$row->accessPointsDTO->background = "#c62828";
 										$down ++;
 									}
@@ -107,6 +111,7 @@ class Api extends CI_Model {
 										"type" => true,
 										"code" => 0,
 										"msg" => "Success",
+										"server" => $server,
 										"list_data" => $arr_dat 
 								);
 							} else {

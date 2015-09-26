@@ -6,6 +6,15 @@ $(document).ready(function() {
 	$("#selectAll").change(function() {
 		$("input:checkbox").prop('checked', $(this).prop("checked"));
 	});
+	
+	$("#a_serverCheckAll").click(function() {
+		$("input:checkbox").prop('checked', 'checked');
+		return false;
+	});
+	$("#a_serverUnCheckAll").click(function() {
+		$("input:checkbox").removeAttr('checked');
+		return false;
+	});
 
 	$('#tableJatengJogja').DataTable({
 		language : {
@@ -30,7 +39,25 @@ $(document).ready(function() {
 			}
 		},
 		"scrollX" : true,
-		responsive : true
+		responsive : true,
+		"createdRow": function( row, data, dataIndex ) {
+		    if ( data.controllerName == "DOWN" ) {
+		        $(row).addClass( 'row-down' );
+		    }
+		},// Settingan kolom untuk mapping dari JSON
+		columns: [
+			{ data: "name" },
+			{ data: "location"},
+			{ data: "ipAddress"},
+			{ data: "ethernetMac"},
+			{ data: "macAddress" },
+			{ data: "controllerName" },
+			{ data: "controllerIpAddress" },
+			{ data: "serialNumber" },
+			{ data: "type" },
+			{ data: "clientCount_2_4GHz" },
+			{ data: "clientCount_5GHz" }
+		]
 	});
 
 	$('#tableJogjaPartnership').DataTable({
@@ -56,6 +83,26 @@ $(document).ready(function() {
 			}
 		},
 		"scrollX" : true,
-		responsive : true
+		responsive : true,
+		
+		"createdRow": function( row, data, dataIndex ) {
+		    if ( data.controllerName == "DOWN" ) {
+		        $(row).addClass( 'row-down' );
+		    }
+		},
+		// Settingan kolom untuk mapping dari JSON
+		"columns": [
+			{ data: "name" },
+			{ data: "location"},
+			{ data: "ipAddress"},
+			{ data: "ethernetMac"},
+			{ data: "macAddress" },
+			{ data: "controllerName" },
+			{ data: "controllerIpAddress" },
+			{ data: "serialNumber" },
+			{ data: "type" },
+			{ data: "clientCount_2_4GHz" },
+			{ data: "clientCount_5GHz" }
+		]
 	});
 });

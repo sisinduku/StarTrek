@@ -1,6 +1,5 @@
 	</div>
     <!-- /#wrapper -->
-    </body>
 
     <!-- jQuery -->
     <script src="<?php echo base_url("/assets/bower_components/jquery/dist/jquery.min.js");?>"></script>
@@ -20,6 +19,17 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url("/assets/dist/js/sb-admin-2.js");?>"></script>
     
-    <?php if ($useTables){?>
+    <?php if (!empty($useTables)) {?>
 		<script src="<?php echo base_url('/assets/js/dataTables.js'); ?>"></script>
 	<?php }?>
+	
+	<script>
+	$(document).ready( function () {
+	   if (typeof(init_page)==='function') {
+		   init_page();
+	   };
+	} );
+	</script>
+	
+	</body>
+</html>

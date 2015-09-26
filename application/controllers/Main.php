@@ -18,20 +18,21 @@ class Main extends CI_Controller{
 	
 	public function lihat_api($device = "ap"){
 		if(!$this->load->cek_sesi()) exit;
+		$data['useTables'] = true;
 		
-		if(isset($_POST['submit'])){
+		if($this->input->post('submit') != false){
+			
 			$data['pageTitle'] = "Lihat API | StarTrek";
 			$data['pageHeader'] = "Lihat Access Point";
-			if($this->form_validation->run() == FALSE){
-				$this->load->template("lihat_api", $data);
-			}else{
-				$data['useTables'] = true;
-				$this->load->model("api");
-				$data['daftarDevice']["jatengjogja"] = $this->api->getDataAPI($device);
-				$data['daftarDevice']["jogjapartnership"] = $this->api->getDataAPI($device);
+			//if($this->form_validation->run() == FALSE){
+			//	$this->load->template("lihat_api", $data);
+			//}else{
+				//$this->load->model("api");
+				//$data['daftarDevice']["jatengjogja"] = $this->api->getDataAPI($device);
+				//$data['daftarDevice']["jogjapartnership"] = $this->api->getDataAPI($device);
 					
 				$this->load->template("lihat_api", $data);
-			}
+			//}
 		}else{
 			$data['pageTitle'] = "Lihat API | StarTrek";
 			$data['pageHeader'] = "Lihat Access Point";
