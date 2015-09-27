@@ -50,11 +50,13 @@ function submitFormCari(event) {
 		},
 		success: function(response){
 			$("#tab_container").show();
-
+			var activeTab = -1;
+			
 			// Proses server 0 (Sindokom)
 			var datatable1 = $('#tableJatengJogja').dataTable().api();
 			datatable1.clear();
 			if ('s0' in response.data) {
+<<<<<<< HEAD
 				// Ditampilkan hanya jika sukses
 				if ('list_data' in response.data.s0){
 					datatable1.rows.add(response.data.s0.list_data.data);
@@ -63,9 +65,23 @@ function submitFormCari(event) {
 					document.getElementById('div_alert_s0').appendChild(node);
 				}
 				else {
+=======
+				activeTab = 0;
+				$('#server-tabs li#tab_s0 a:first').tab('show');
+				
+				// Ditampilkan hanya jika diminta
+				$("#tab_s0").show();
+				if ('list_data' in response.data.s0) {
+					$("#tabpane_s0 .dataTable_wrapper").show();
+			   		datatable1.rows.add(response.data.s0.list_data.data);
+				} else {
+>>>>>>> origin/master
 					// Tampilkan error di sini...
+					$("#tabpane_s0 .dataTable_wrapper").hide();
 					$("#div_alert_s0").html(response.data.s0.msg).show();
 				}
+			} else {
+				$("#tab_s0").hide();
 			}
 			datatable1.draw();
 			
@@ -73,6 +89,7 @@ function submitFormCari(event) {
 			var datatable2 = $('#tableJogjaPartnership').dataTable().api();
 			datatable2.clear();
 			if ('s1' in response.data) {
+<<<<<<< HEAD
 				// Ditampilkan hanya jika sukses
 				if ('list_data' in response.data.s1){
 					datatable2.rows.add(response.data.s1.list_data.data);
@@ -81,9 +98,24 @@ function submitFormCari(event) {
 					document.getElementById('div_alert_s1').appendChild(node);
 				}
 				else {
+=======
+				if (activeTab == -1) {
+					activeTab = 1;
+					$('#server-tabs li#tab_s1 a:first').tab('show');
+				}
+				// Ditampilkan hanya jika diminta
+				$("#tab_s1").show();
+				if ('list_data' in response.data.s1) {
+					$("#tabpane_s1 .dataTable_wrapper").show();
+			    	datatable2.rows.add(response.data.s1.list_data.data);
+				} else {
+>>>>>>> origin/master
 					// Tampilkan error di sini...
+					$("#tabpane_s1 .dataTable_wrapper").hide();
 					$("#div_alert_s1").html(response.data.s1.msg).show();
 				}
+			} else {
+				$("#tab_s1").hide();
 			}
 			datatable2.draw();
 		},
@@ -170,6 +202,7 @@ function submitFormCari(event) {
 							</tr>
 							<tr>
 								<td colspan="6">
+									<div id="div_request_result" class="alert alert-danger"></div>
 									<?php
 									$errString = validation_errors();
 									if(! empty ( $errString )){
@@ -183,6 +216,12 @@ function submitFormCari(event) {
 						</table>
 					</form>
 				</div>
+				<div style="min-height: 48px;">
+					<div id="div_loader">
+						<img src="<?php echo base_url("/assets/images/loader.gif"); ?>"
+							alt="Memuat." /> Sedang Memuat...
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- /.col-lg-12 -->
@@ -190,20 +229,13 @@ function submitFormCari(event) {
 	<!-- /.row -->
 	<div class="row">
 		<div class="col-lg-12">
-			<div id="div_loader">
-				<img src="<?php echo base_url("/assets/images/loader.gif"); ?>"
-					alt="Memuat." /> Sedang Memuat...
-			</div>
-			<div id="div_request_result" class="alert alert-danger">
-				
-			</div>
 			<div id="tab_container">
 				<!-- Nav tabs -->
-				<ul class="nav nav-tabs" role="tablist">
-					<li role="presentation" class="active"><a href="#jatengjogja"
+				<ul class="nav nav-tabs" role="tablist" id="server-tabs">
+					<li role="presentation" class="active" id="tab_s0"><a href="#jatengjogja"
 						aria-controls="jatengjogja" role="tab" data-toggle="tab">Cisco
 							Sindokom</a></li>
-					<li role="presentation"><a href="#jogjapartnership"
+					<li role="presentation" id="tab_s1"><a href="#jogjapartnership"
 						aria-controls="jogjapartnership" role="tab" data-toggle="tab">Cisco
 							Partnership</a></li>
 				</ul>
@@ -219,7 +251,7 @@ function submitFormCari(event) {
 								<?php if (!empty($daftarDevice["jatengjogja"]["msg"]))
 										echo $daftarDevice["jatengjogja"]["msg"]; ?></h3>
 							</div>
-							<div class="panel-body">
+							<div class="panel-body" id="tabpane_s0">
 								<div id="div_alert_s0" class="alert alert-danger"></div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
@@ -281,7 +313,7 @@ function submitFormCari(event) {
 								<?php if (!empty($daftarDevice["jogjapartnership"]["msg"]))
 										echo $daftarDevice["jogjapartnership"]["msg"];?></h3>
 							</div>
-							<div class="panel-body">
+							<div class="panel-body" id="tabpane_s1">
 								<div id="div_alert_s1" class="alert alert-danger"></div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
