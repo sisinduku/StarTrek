@@ -22,7 +22,7 @@ class Api extends CI_Model {
 	public function getDataAPI($device, $server) {
 		$this->server = $server; //$this->input->post('server');
 		$this->searchBy = $this->input->post('searchBy');
-		$this->searchQuery = $this->input->post('seacrh');
+		$this->searchQuery = $this->input->post('search');
 		
 		$username = "username";
 		$password = "********";
@@ -53,7 +53,7 @@ class Api extends CI_Model {
 		} else {
 			switch ($device) {
 				case "ap" :
-					$nexturl = "https://{$this->server}/webacs/api/v1/data/AccessPoints?.full=true&.firstResult=0&.maxResults=1000&{$this->searchBy}=contains(\"{$this->searchQuery}\")";
+					$nexturl = "https://{$this->server}/webacs/api/v1/data/AccessPoints?.full=true&.firstResult=0&.maxResults=999&{$this->searchBy}=contains(\"{$this->searchQuery}\")";
 					//$nexturl = "http://127.0.0.1/startrek/dummy.xml";
 					break;
 				case "alarm" :
@@ -112,7 +112,7 @@ class Api extends CI_Model {
 										"code" => 0,
 										"msg" => "Success",
 										"server" => $server,
-										"list_data" => $arr_dat 
+										"list_data" => $arr_dat
 								);
 							} else {
 								$msg = array (

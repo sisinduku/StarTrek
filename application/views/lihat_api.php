@@ -56,8 +56,12 @@ function submitFormCari(event) {
 			datatable1.clear();
 			if ('s0' in response.data) {
 				// Ditampilkan hanya jika sukses
-				if ('list_data' in response.data.s0)
-			   		datatable1.rows.add(response.data.s0.list_data.data);
+				if ('list_data' in response.data.s0){
+					datatable1.rows.add(response.data.s0.list_data.data);
+					$("#div_alert_s0").show();
+					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s0.list_data.down);
+					document.getElementById('div_alert_s0').appendChild(node);
+				}
 				else {
 					// Tampilkan error di sini...
 					$("#div_alert_s0").html(response.data.s0.msg).show();
@@ -70,8 +74,12 @@ function submitFormCari(event) {
 			datatable2.clear();
 			if ('s1' in response.data) {
 				// Ditampilkan hanya jika sukses
-				if ('list_data' in response.data.s1)
-			    	datatable2.rows.add(response.data.s1.list_data.data);
+				if ('list_data' in response.data.s1){
+					datatable2.rows.add(response.data.s1.list_data.data);
+					$("#div_alert_s1").show();
+					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
+					document.getElementById('div_alert_s1').appendChild(node);
+				}
 				else {
 					// Tampilkan error di sini...
 					$("#div_alert_s1").html(response.data.s1.msg).show();
@@ -122,7 +130,7 @@ function submitFormCari(event) {
 									value="10.16.254.70"> <label for="chk_server1">Cisco Sindokom</label></td>
 								<td colspan="3"><input type="checkbox" class="chk_server" name="server[1]"
 									id="chk_server2"
-									value="10.232.9.164"> <label for="chk_server2">Cisco Partnership</label></td>
+									value="10.16.55.196"> <label for="chk_server2">Cisco Partnership</label></td>
 							</tr>
 							<tr>
 								<th colspan="6">Mencari Berdasarkan:
