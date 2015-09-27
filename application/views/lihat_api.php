@@ -56,16 +56,6 @@ function submitFormCari(event) {
 			var datatable1 = $('#tableJatengJogja').dataTable().api();
 			datatable1.clear();
 			if ('s0' in response.data) {
-<<<<<<< HEAD
-				// Ditampilkan hanya jika sukses
-				if ('list_data' in response.data.s0){
-					datatable1.rows.add(response.data.s0.list_data.data);
-					$("#div_alert_s0").show();
-					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s0.list_data.down);
-					document.getElementById('div_alert_s0').appendChild(node);
-				}
-				else {
-=======
 				activeTab = 0;
 				$('#server-tabs li#tab_s0 a:first').tab('show');
 				
@@ -74,8 +64,11 @@ function submitFormCari(event) {
 				if ('list_data' in response.data.s0) {
 					$("#tabpane_s0 .dataTable_wrapper").show();
 			   		datatable1.rows.add(response.data.s0.list_data.data);
+			   		$("#div_alert_s0").show();
+					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s0.list_data.down);
+					document.getElementById('div_alert_s0').appendChild(node);
 				} else {
->>>>>>> origin/master
+
 					// Tampilkan error di sini...
 					$("#tabpane_s0 .dataTable_wrapper").hide();
 					$("#div_alert_s0").html(response.data.s0.msg).show();
@@ -84,21 +77,11 @@ function submitFormCari(event) {
 				$("#tab_s0").hide();
 			}
 			datatable1.draw();
-			
+						
 			// Proses server 1 (partnership)
 			var datatable2 = $('#tableJogjaPartnership').dataTable().api();
 			datatable2.clear();
 			if ('s1' in response.data) {
-<<<<<<< HEAD
-				// Ditampilkan hanya jika sukses
-				if ('list_data' in response.data.s1){
-					datatable2.rows.add(response.data.s1.list_data.data);
-					$("#div_alert_s1").show();
-					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
-					document.getElementById('div_alert_s1').appendChild(node);
-				}
-				else {
-=======
 				if (activeTab == -1) {
 					activeTab = 1;
 					$('#server-tabs li#tab_s1 a:first').tab('show');
@@ -108,8 +91,10 @@ function submitFormCari(event) {
 				if ('list_data' in response.data.s1) {
 					$("#tabpane_s1 .dataTable_wrapper").show();
 			    	datatable2.rows.add(response.data.s1.list_data.data);
+			    	$("#div_alert_s1").show();
+					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
+					document.getElementById('div_alert_s1').appendChild(node);
 				} else {
->>>>>>> origin/master
 					// Tampilkan error di sini...
 					$("#tabpane_s1 .dataTable_wrapper").hide();
 					$("#div_alert_s1").html(response.data.s1.msg).show();
@@ -216,7 +201,7 @@ function submitFormCari(event) {
 						</table>
 					</form>
 				</div>
-				<div style="min-height: 48px;">
+				<div style="min-height: 48px;" >
 					<div id="div_loader">
 						<img src="<?php echo base_url("/assets/images/loader.gif"); ?>"
 							alt="Memuat." /> Sedang Memuat...
