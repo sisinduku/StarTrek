@@ -38,7 +38,10 @@ $(document).ready(function() {
 				"sortDescending" : ": Mensortir kolom secara descending"
 			}
 		},
+		"lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]],
 		"scrollX" : true,
+		"scrollY": "800px",
+		"scrollCollapse": true,
 		responsive : true,
 		"createdRow": function( row, data, dataIndex ) {
 		    if ( data.controllerName == "DOWN" ) {
@@ -82,9 +85,11 @@ $(document).ready(function() {
 				"sortDescending" : ": Mensortir kolom secara descending"
 			}
 		},
+		"lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]],
 		"scrollX" : true,
+		"scrollY": "800px",
+		"scrollCollapse": true,
 		responsive : true,
-		
 		"createdRow": function( row, data, dataIndex ) {
 		    if ( data.controllerName == "DOWN" ) {
 		        $(row).addClass( 'row-down' );

@@ -66,7 +66,10 @@ function submitFormCari(event) {
 			   		datatable1.rows.add(response.data.s0.list_data.data);
 			   		$("#div_alert_s0").show();
 					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s0.list_data.down);
-					document.getElementById('div_alert_s0').appendChild(node);
+					var myNode = document.getElementById('div_alert_s0')
+					if(myNode.firstChild)
+						myNode.removeChild(myNode.firstChild);
+					myNode.appendChild(node);
 				} else {
 
 					// Tampilkan error di sini...
@@ -93,7 +96,10 @@ function submitFormCari(event) {
 			    	datatable2.rows.add(response.data.s1.list_data.data);
 			    	$("#div_alert_s1").show();
 					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
-					document.getElementById('div_alert_s1').appendChild(node);
+					var myNode = document.getElementById('div_alert_s1')
+					if(myNode.firstChild)
+						myNode.removeChild(myNode.firstChild);
+					myNode.appendChild(node);
 				} else {
 					// Tampilkan error di sini...
 					$("#tabpane_s1 .dataTable_wrapper").hide();
