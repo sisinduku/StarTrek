@@ -34,3 +34,19 @@ $(function() {
         element.addClass('active');
     }
 });
+
+$(".float-menu").click(function() {
+	var parent = $(window).height();
+	$(".sidebar").animate({
+		width: "250px",
+		height: parent
+	});
+	$(".blank-background").show();
+})
+
+$(".blank-background").click(function() {
+	$(".sidebar").animate({
+		width: "0px",
+	});
+	$(".blank-background").hide();
+})

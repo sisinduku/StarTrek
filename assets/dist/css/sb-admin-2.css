@@ -21,7 +21,7 @@ body {
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 250px;
+        margin: 0 0 0 0;
         padding: 0 30px;
         border-left: 1px solid #e7e7e7;
     }
@@ -127,12 +127,41 @@ body {
     padding-left: 52px;
 }
 
+.float-menu{
+ 	display: none;
+ }
+ 
+@media(max-width: 767px){
+	.navbar-right{
+		padding-left: 10px;
+	}
+}
 @media(min-width:768px) {
     .sidebar {
-        z-index: 1;
-        position: absolute;
-        width: 250px;
-        margin-top: 51px;
+        z-index: -1;
+        position: fixed;
+        width: 0px;
+        padding-top: 51px;
+        overflow: hidden;
+    }
+    
+    .float-menu{
+    	position: fixed;
+    	top: 55px;
+    	left: 5px;
+    	z-index: 9;
+    	display: inherit;
+    }
+    
+    .blank-background{
+    	position: fixed;
+    	top: 0px;
+    	left: 0px;
+    	width: 100%;
+    	height: 100%;
+    	z-index: 10;
+    	background-color: rgba(0, 0, 0, 0.8);
+    	display: none;
     }
 
     .navbar-top-links .dropdown-messages,
