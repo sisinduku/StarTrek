@@ -38,9 +38,7 @@
 <body>
 
     <div id="wrapper">
-		<div class="blank-background">
-			
-		</div>
+		<div class="blank-background"></div>
         <!-- Navigation -->
         <button class="btn btn-default float-menu">
         	<span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -88,7 +86,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> NMS API <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="http://localhost/startrek/index.php/main/lihat_api/ap">Access Point</a>
+                                    <a href="<?php echo site_url("/main/lihat_api/ap");?>">Access Point</a>
                                 </li>
                                 <li>
                                     <a href="#">Alarm (Coming Soon)</a>

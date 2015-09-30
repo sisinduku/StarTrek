@@ -35,6 +35,7 @@ $(function() {
     }
 });
 
+// Mengaktifkan sidebar menu ketika tombol float-menu ditekan
 $(".float-menu").click(function() {
 	var parent = $(window).height();
 	$(".sidebar").animate({
@@ -44,6 +45,7 @@ $(".float-menu").click(function() {
 	$(".blank-background").show();
 })
 
+// Menutup sidebar menu ketika background halaman ditekan
 $(".blank-background").click(function() {
 	$(".sidebar").animate({
 		width: "0px",

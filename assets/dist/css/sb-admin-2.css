@@ -129,13 +129,14 @@ body {
 
 .float-menu{
  	display: none;
- }
+}
  
 @media(max-width: 767px){
 	.navbar-right{
 		padding-left: 10px;
 	}
 }
+
 @media(min-width:768px) {
     .sidebar {
         z-index: -1;
