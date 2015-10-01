@@ -110,4 +110,43 @@ $(document).ready(function() {
 			{ data: "clientCount_5GHz" }
 		]
 	});
+	
+	$('#tableAutelan').DataTable({
+		language : {
+			"search" : "Cari:",
+			"emptyTable" : "Tidak ada data pada tabel",
+			"infoEmpty" : "Menampilkan 0 Access Point",
+			"info" : "Menampilkan _START_ - _END_ dari _TOTAL_ Access Point",
+			"infoFiltered" : "(Disortir dari _MAX_ total Access Point)",
+			"lengthMenu" : "Menampilkan _MENU_ Access Point",
+			"loadingRecords" : "Memuat...",
+			"processing" : "Memproses...",
+			"zeroRecords" : "Pencarian tidak ditemukan",
+			"paginate" : {
+				"first" : "Pertama",
+				"last" : "Terakhir",
+				"next" : "Selanjutnya",
+				"previous" : "Sebelumnya"
+			},
+			"aria" : {
+				"sortAscending" : ": Mensortir kolom secara ascending",
+				"sortDescending" : ": Mensortir kolom secara descending"
+			}
+		},
+		"lengthMenu": [[100, 250, 500, -1], [100, 250, 500, "All"]],
+		"scrollX" : true,
+		"scrollY": "800px",
+		"scrollCollapse": true,
+		responsive : true,
+		// Settingan kolom untuk mapping dari JSON
+		"columns": [
+			{ data: "loc_id" },
+			{ data: "ap_name"},
+			{ data: "location"},
+			{ data: "ap_ip_address"},
+			{ data: "mac_address" },
+			{ data: "status" }
+		]
+	});
+	
 });

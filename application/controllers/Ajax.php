@@ -32,6 +32,7 @@ class Ajax extends CI_Controller{
 		if($this->input->post('submit') != false){
 			$jsonOutput = array();
 			$this->load->model("api");
+			$this->load->model("autelan");
 			$serverArr = $this->input->post('server');
 			if (!is_array($serverArr)) {
 				echo $this->_generate_json_error("Invalid argument!");
@@ -39,7 +40,10 @@ class Ajax extends CI_Controller{
 			}
 			// Kita iterasi / request server satu per satu...
 			foreach ($serverArr as $idxServer => $itemServer) {
-				$jsonOutput['s'.$idxServer] = $this->api->getDataAPI($device, $itemServer);
+				if($itemServer == "autelan")
+					$jsonOutput['s'.$idxServer] = $this->autelan->getDataAutelan();
+				else
+					$jsonOutput['s'.$idxServer] = $this->api->getDataAPI($device, $itemServer);
 			}
 			//$jsonOutput["jatengjogja"] = $this->api->getDataAPI($device);
 			//$jsonOutput["jogjapartnership"] = $this->api->getDataAPI($device);

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2015 at 09:59 AM
+-- Generation Time: Oct 01, 2015 at 01:53 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -40,6 +40,28 @@ CREATE TABLE IF NOT EXISTS `tbl_admin` (
 INSERT INTO `tbl_admin` (`idAdmin`, `username`, `password`, `privilege`) VALUES
 (1, 'admin', '$2a$10$Y4lW81sCfUKvmhG1zvuQHuAW5MruTyTg.xOl7wA6GM5qlY3GehYhm', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_autelan`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_autelan` (
+  `loc_id` int(128) NOT NULL,
+  `ap_name` varchar(256) NOT NULL,
+  `mac_address` varchar(128) NOT NULL,
+  `ap_ip_address` varchar(64) NOT NULL,
+  `location` varchar(256) NOT NULL,
+  `status` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_autelan`
+--
+
+INSERT INTO `tbl_autelan` (`loc_id`, `ap_name`, `mac_address`, `ap_ip_address`, `location`, `status`) VALUES
+(1, 'AP_Name', 'mac', '192.168.0.1', 'Tembalang', 'uo');
+
 --
 -- Indexes for dumped tables
 --
@@ -49,6 +71,12 @@ INSERT INTO `tbl_admin` (`idAdmin`, `username`, `password`, `privilege`) VALUES
 --
 ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`idAdmin`);
+
+--
+-- Indexes for table `tbl_autelan`
+--
+ALTER TABLE `tbl_autelan`
+  ADD PRIMARY KEY (`loc_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables

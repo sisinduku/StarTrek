@@ -109,6 +109,35 @@ function submitFormCari(event) {
 				$("#tab_s1").hide();
 			}
 			datatable2.draw();
+
+			// Proses server 2 (Autelan)
+			var datatable3 = $('#tableAutelan').dataTable().api();
+			datatable3.clear();
+			if ('s2' in response.data) {
+				if (activeTab == -1) {
+					activeTab = 2;
+					$('#server-tabs li#tab_s2 a:first').tab('show');
+				}
+				// Ditampilkan hanya jika diminta
+				$("#tab_s2").show();
+				if ('list_data' in response.data.s2) {
+					$("#tabpane_s2 .dataTable_wrapper").show();
+			    	datatable3.rows.add(response.data.s2);
+			    	/* $("#div_alert_s2").show();
+					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
+					var myNode = document.getElementById('div_alert_s1')
+					if(myNode.firstChild)
+						myNode.removeChild(myNode.firstChild);
+					myNode.appendChild(node); */
+				} else {
+					// Tampilkan error di sini...
+					$("#tabpane_s2 .dataTable_wrapper").hide();
+					$("#div_alert_s2").html(response.data.s2.msg).show();
+				}
+			} else {
+				$("#tab_s2").hide();
+			}
+			datatable3.draw();
 		},
 		error: function(xhr){
 			if (xhr.status != 200) {
@@ -148,12 +177,15 @@ function submitFormCari(event) {
 									<a href="#uncheck-all" id="a_serverUnCheckAll">Kosongkan Semua</a></td>
 							</tr>
 							<tr>
-								<td colspan="3"><input type="checkbox" class="chk_server" name="server[0]"
+								<td colspan="2"><input type="checkbox" class="chk_server" name="server[0]"
 									id="chk_server1"
 									value="10.16.254.70"> <label for="chk_server1">Cisco Sindokom</label></td>
-								<td colspan="3"><input type="checkbox" class="chk_server" name="server[1]"
+								<td colspan="1"><input type="checkbox" class="chk_server" name="server[1]"
 									id="chk_server2"
 									value="10.16.55.196"> <label for="chk_server2">Cisco Partnership</label></td>
+								<td colspan="2"><input type="checkbox" class="chk_server" name="server[2]"
+									id="chk_server3"
+									value="autelan"> <label for="chk_server3">Autelan</label></td>
 							</tr>
 							<tr>
 								<th colspan="6">Mencari Berdasarkan:
@@ -238,9 +270,7 @@ function submitFormCari(event) {
 						<!-- DataTables Jateng Jogja -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Cisco Sindokom (10.16.254.70)
-								<?php if (!empty($daftarDevice["jatengjogja"]["msg"]))
-										echo $daftarDevice["jatengjogja"]["msg"]; ?></h3>
+								<h3 class="panel-title">Cisco Sindokom (10.16.254.70)</h3>
 							</div>
 							<div class="panel-body" id="tabpane_s0">
 								<div id="div_alert_s0" class="alert alert-danger"></div>
@@ -300,9 +330,7 @@ function submitFormCari(event) {
 						<!-- DataTables Jogja Partnership -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Cisco Partnership (10.16.55.196)
-								<?php if (!empty($daftarDevice["jogjapartnership"]["msg"]))
-										echo $daftarDevice["jogjapartnership"]["msg"];?></h3>
+								<h3 class="panel-title">Cisco Partnership (10.16.55.196)</h3>
 							</div>
 							<div class="panel-body" id="tabpane_s1">
 								<div id="div_alert_s1" class="alert alert-danger"></div>
@@ -327,6 +355,53 @@ function submitFormCari(event) {
 												<th align='center'>IP</th>
 												<th align='center'>2,4Ghz</th>
 												<th align='center'>5Ghz</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php
+										
+										 /* foreach ($daftarDevice["jogjapartnership"]["list_data"]["data"] as $row){
+										 	echo "<tr>";
+										 	echo "<td>".$row->name."</td>";
+										 	echo "<td>".$row->location."</td>";
+											echo "<td>".$row->ipAddress."</td>";
+											echo "<td>".$row->ethernetMac."</td>";
+											echo "<td>".$row->macAddress."</td>";
+											echo "<td>".$row->controllerName."</td>";
+											echo "<td>".$row->controllerIpAddress."</td>";
+											echo "<td>".$row->serialNumber."</td>";
+											echo "<td>".$row->type."</td>";
+											echo "<td>".$row->clientCount_2_4GHz."</td>";
+											echo "<td>".$row->clientCount_5GHz."</td>";
+											echo "</tr>";
+										 } */
+										?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane fade" id="autelan">
+
+						<!-- DataTables Autelan -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Autelan</h3>
+							</div>
+							<div class="panel-body" id="tabpane_s2">
+								<div id="div_alert_s2" class="alert alert-danger"></div>
+								<div class="dataTable_wrapper">
+									<table class="table table-striped table-bordered table-hover"
+										id="tableAutelan">
+										<thead>
+											<tr>
+												<th colspan='2' align='center'>Loc ID</th>
+												<th rowspan='2' align='center'>AP Name</th>
+												<th rowspan='2' align='center'>Lokasi</th>
+												<th rowspan='2' align='center'>IP Address</th>
+												<th colspan='2' align='center'>Mac Addr</th>
+												<th rowspan='2' align='center'>Status</th>
 											</tr>
 										</thead>
 										<tbody>

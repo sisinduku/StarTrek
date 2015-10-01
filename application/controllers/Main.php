@@ -40,4 +40,10 @@ class Main extends CI_Controller{
 			$this->load->template("lihat_api", $data);
 		}
 	}
+	
+	public function parseAutelan(){
+		$this->load->model("Autelan");
+		echo $this->autelan->parseDB();
+	}
+	
 }
