@@ -138,11 +138,12 @@ $(document).ready(function() {
 		"scrollY": "800px",
 		"scrollCollapse": true,
 		responsive : true,
+		"autoWidth" : false,
 		// Settingan kolom untuk mapping dari JSON
 		"columns": [
 			{ data: "loc_id" },
 			{ data: "ap_name"},
-			{ data: "location"},
+			{ data: "location", width: "50%"},
 			{ data: "ap_ip_address"},
 			{ data: "mac_address" },
 			{ data: "status" }

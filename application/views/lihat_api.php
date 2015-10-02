@@ -122,7 +122,7 @@ function submitFormCari(event) {
 				$("#tab_s2").show();
 				if ('list_data' in response.data.s2) {
 					$("#tabpane_s2 .dataTable_wrapper").show();
-			    	datatable3.rows.add(response.data.s2);
+			    	datatable3.rows.add(response.data.s2.list_data);
 			    	/* $("#div_alert_s2").show();
 					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
 					var myNode = document.getElementById('div_alert_s1')
@@ -137,7 +137,7 @@ function submitFormCari(event) {
 			} else {
 				$("#tab_s2").hide();
 			}
-			datatable3.draw();
+			datatable3.columns.adjust().draw();
 		},
 		error: function(xhr){
 			if (xhr.status != 200) {
@@ -261,6 +261,8 @@ function submitFormCari(event) {
 					<li role="presentation" id="tab_s1"><a href="#jogjapartnership"
 						aria-controls="jogjapartnership" role="tab" data-toggle="tab">Cisco
 							Partnership</a></li>
+					<li role="presentation" id="tab_s2"><a href="#autelan"
+						aria-controls="autelan" role="tab" data-toggle="tab">Autelan</a></li>
 				</ul>
 
 				<!-- Tab panes -->
@@ -396,12 +398,12 @@ function submitFormCari(event) {
 										id="tableAutelan">
 										<thead>
 											<tr>
-												<th colspan='2' align='center'>Loc ID</th>
-												<th rowspan='2' align='center'>AP Name</th>
-												<th rowspan='2' align='center'>Lokasi</th>
-												<th rowspan='2' align='center'>IP Address</th>
-												<th colspan='2' align='center'>Mac Addr</th>
-												<th rowspan='2' align='center'>Status</th>
+												<th align='center'>Loc ID</th>
+												<th align='center'>AP Name</th>
+												<th align='center'>Lokasi</th>
+												<th align='center'>IP Address</th>
+												<th align='center'>Mac Addr</th>
+												<th align='center'>Status</th>
 											</tr>
 										</thead>
 										<tbody>
