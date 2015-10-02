@@ -134,6 +134,7 @@ table.dataTable.table-condensed thead .sorting_desc:after {
 }
 
 /* Scrolling */
+div.dataTables_scroll { clear: both; }
 div.dataTables_scrollHead table {
 	margin-bottom: 0 !important;
 	border-bottom-left-radius: 0;

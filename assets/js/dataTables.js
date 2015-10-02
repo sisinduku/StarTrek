@@ -50,7 +50,7 @@ $(document).ready(function() {
 		},// Settingan kolom untuk mapping dari JSON
 		columns: [
 			{ data: "name" },
-			{ data: "location"},
+			{ data: "location", width: "400px"},
 			{ data: "ipAddress"},
 			{ data: "ethernetMac"},
 			{ data: "macAddress" },
@@ -98,7 +98,7 @@ $(document).ready(function() {
 		// Settingan kolom untuk mapping dari JSON
 		"columns": [
 			{ data: "name" },
-			{ data: "location"},
+			{ data: "location", width: "400px"},
 			{ data: "ipAddress"},
 			{ data: "ethernetMac"},
 			{ data: "macAddress" },
@@ -108,9 +108,9 @@ $(document).ready(function() {
 			{ data: "type" },
 			{ data: "clientCount_2_4GHz" },
 			{ data: "clientCount_5GHz" }
-		]
+		], "autoWidth": true
 	});
-	
+
 	$('#tableAutelan').DataTable({
 		language : {
 			"search" : "Cari:",
@@ -138,16 +138,21 @@ $(document).ready(function() {
 		"scrollY": "800px",
 		"scrollCollapse": true,
 		responsive : true,
-		"autoWidth" : false,
+		"autoWidth" : true,
 		// Settingan kolom untuk mapping dari JSON
 		"columns": [
 			{ data: "loc_id" },
 			{ data: "ap_name"},
-			{ data: "location", width: "50%"},
+			{ data: "location", width: "400px"},
 			{ data: "ap_ip_address"},
 			{ data: "mac_address" },
 			{ data: "status" }
 		]
 	});
+
+	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
+	     var t = $($.fn.dataTable.tables( {visible: true, api: true} )).dataTable().api();
+	     t.columns.adjust();
+	} );
 	
 });

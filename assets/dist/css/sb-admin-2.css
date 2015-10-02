@@ -144,6 +144,7 @@ body {
         width: 0px;
         padding-top: 51px;
         overflow: hidden;
+        white-space: nowrap;
     }
     
     .float-menu{

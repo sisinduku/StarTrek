@@ -46,7 +46,7 @@ function submitFormCari(event) {
 			$("#form_cari button[type=submit], #form_cari input[type=text]")
 				.attr('disabled','disabled');
 
-			$("#div_alert_s0, #div_alert_s1").hide();
+			$("#div_alert_s0, #div_alert_s1, #div_alert_s2").hide();
 		},
 		success: function(response){
 			$("#tab_container").show();
@@ -79,7 +79,7 @@ function submitFormCari(event) {
 			} else {
 				$("#tab_s0").hide();
 			}
-			datatable1.draw();
+			datatable1.columns.adjust().draw();
 						
 			// Proses server 1 (partnership)
 			var datatable2 = $('#tableJogjaPartnership').dataTable().api();
@@ -108,7 +108,7 @@ function submitFormCari(event) {
 			} else {
 				$("#tab_s1").hide();
 			}
-			datatable2.draw();
+			datatable2.columns.adjust().draw();
 
 			// Proses server 2 (Autelan)
 			var datatable3 = $('#tableAutelan').dataTable().api();
@@ -278,7 +278,7 @@ function submitFormCari(event) {
 								<div id="div_alert_s0" class="alert alert-danger"></div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
-										id="tableJatengJogja">
+										id="tableJatengJogja" style="width:100%;">
 										<thead>
 											<tr>
 												<th rowspan='2' align='center'>AP Name</th>
@@ -300,27 +300,7 @@ function submitFormCari(event) {
 											</tr>
 										</thead>
 										<tbody>
-										<?php
 										
-										 /* if ($daftarDevice["jatengjogja"]["type"]){
-										 	foreach ($daftarDevice["jatengjogja"]["list_data"]["data"] as $row){
-										 		echo "<tr>";
-												echo "<td>".$row->name."</td>";
-										 		echo "<td>".$row->location."</td>";
-										 		echo "<td>".$row->ipAddress."</td>";
-										 		echo "<td>".$row->ethernetMac."</td>";
-										 		echo "<td>".$row->macAddress."</td>";
-										 		echo "<td>".$row->controllerName."</td>";
-										 		echo "<td>".$row->controllerIpAddress."</td>";
-										 		echo "<td>".$row->serialNumber."</td>";
-										 		echo "<td>".$row->type."</td>";
-										 		echo "<td>".$row->clientCount_2_4GHz."</td>";
-										 		echo "<td>".$row->clientCount_5GHz."</td>";
-										 		echo "</tr>";
-										 	}
-										 } */
-										
-										?>
 										</tbody>
 									</table>
 								</div>
@@ -338,7 +318,7 @@ function submitFormCari(event) {
 								<div id="div_alert_s1" class="alert alert-danger"></div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
-										id="tableJogjaPartnership">
+										id="tableJogjaPartnership" style="width:100%;">
 										<thead>
 											<tr>
 												<th rowspan='2' align='center'>AP Name</th>
@@ -360,24 +340,7 @@ function submitFormCari(event) {
 											</tr>
 										</thead>
 										<tbody>
-										<?php
 										
-										 /* foreach ($daftarDevice["jogjapartnership"]["list_data"]["data"] as $row){
-										 	echo "<tr>";
-										 	echo "<td>".$row->name."</td>";
-										 	echo "<td>".$row->location."</td>";
-											echo "<td>".$row->ipAddress."</td>";
-											echo "<td>".$row->ethernetMac."</td>";
-											echo "<td>".$row->macAddress."</td>";
-											echo "<td>".$row->controllerName."</td>";
-											echo "<td>".$row->controllerIpAddress."</td>";
-											echo "<td>".$row->serialNumber."</td>";
-											echo "<td>".$row->type."</td>";
-											echo "<td>".$row->clientCount_2_4GHz."</td>";
-											echo "<td>".$row->clientCount_5GHz."</td>";
-											echo "</tr>";
-										 } */
-										?>
 										</tbody>
 									</table>
 								</div>
@@ -395,7 +358,7 @@ function submitFormCari(event) {
 								<div id="div_alert_s2" class="alert alert-danger"></div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
-										id="tableAutelan">
+										id="tableAutelan" style="width:100%;">
 										<thead>
 											<tr>
 												<th align='center'>Loc ID</th>
@@ -407,24 +370,7 @@ function submitFormCari(event) {
 											</tr>
 										</thead>
 										<tbody>
-										<?php
-										
-										 /* foreach ($daftarDevice["jogjapartnership"]["list_data"]["data"] as $row){
-										 	echo "<tr>";
-										 	echo "<td>".$row->name."</td>";
-										 	echo "<td>".$row->location."</td>";
-											echo "<td>".$row->ipAddress."</td>";
-											echo "<td>".$row->ethernetMac."</td>";
-											echo "<td>".$row->macAddress."</td>";
-											echo "<td>".$row->controllerName."</td>";
-											echo "<td>".$row->controllerIpAddress."</td>";
-											echo "<td>".$row->serialNumber."</td>";
-											echo "<td>".$row->type."</td>";
-											echo "<td>".$row->clientCount_2_4GHz."</td>";
-											echo "<td>".$row->clientCount_5GHz."</td>";
-											echo "</tr>";
-										 } */
-										?>
+									
 										</tbody>
 									</table>
 								</div>
