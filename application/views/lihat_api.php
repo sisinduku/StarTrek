@@ -47,6 +47,7 @@ function submitFormCari(event) {
 				.attr('disabled','disabled');
 
 			$("#div_alert_s0, #div_alert_s1, #div_alert_s2").hide();
+			$("#div_info_s0, #div_info_s1, #div_info_s2").hide();
 		},
 		success: function(response){
 			$("#tab_container").show();
@@ -64,12 +65,18 @@ function submitFormCari(event) {
 				if ('list_data' in response.data.s0) {
 					$("#tabpane_s0 .dataTable_wrapper").show();
 			   		datatable1.rows.add(response.data.s0.list_data.data);
-			   		$("#div_alert_s0").show();
-					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s0.list_data.down);
-					var myNode = document.getElementById('div_alert_s0')
-					if(myNode.firstChild)
+			   		$("#div_info_s0").show();
+			   		var node = document.createElement("LI");
+			   		var textNode = document.createTextNode("Total AP : "+response.data.s0.list_data.total);
+			   		node.appendChild(textNode);
+			   		var node2 = document.createElement("LI");
+			   		var textNode2 = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s0.list_data.down);
+			   		node2.appendChild(textNode2);
+					var myNode = document.getElementById('ul_s0')
+					while(myNode.firstChild)
 						myNode.removeChild(myNode.firstChild);
 					myNode.appendChild(node);
+					myNode.appendChild(node2);
 				} else {
 
 					// Tampilkan error di sini...
@@ -94,12 +101,18 @@ function submitFormCari(event) {
 				if ('list_data' in response.data.s1) {
 					$("#tabpane_s1 .dataTable_wrapper").show();
 			    	datatable2.rows.add(response.data.s1.list_data.data);
-			    	$("#div_alert_s1").show();
-					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
-					var myNode = document.getElementById('div_alert_s1')
-					if(myNode.firstChild)
+			    	$("#div_info_s1").show();
+			   		var node = document.createElement("LI");
+			   		var textNode = document.createTextNode("Total AP : "+response.data.s1.list_data.total);
+			   		node.appendChild(textNode);
+			   		var node2 = document.createElement("LI");
+			   		var textNode2 = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
+			   		node2.appendChild(textNode2);
+					var myNode = document.getElementById('ul_s1')
+					while(myNode.firstChild)
 						myNode.removeChild(myNode.firstChild);
 					myNode.appendChild(node);
+					myNode.appendChild(node2);
 				} else {
 					// Tampilkan error di sini...
 					$("#tabpane_s1 .dataTable_wrapper").hide();
@@ -123,12 +136,14 @@ function submitFormCari(event) {
 				if ('list_data' in response.data.s2) {
 					$("#tabpane_s2 .dataTable_wrapper").show();
 			    	datatable3.rows.add(response.data.s2.list_data);
-			    	/* $("#div_alert_s2").show();
-					var node = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s1.list_data.down);
-					var myNode = document.getElementById('div_alert_s1')
-					if(myNode.firstChild)
+			    	$("#div_info_s2").show();
+			   		var node = document.createElement("LI");
+			   		var textNode = document.createTextNode("Total AP : "+response.data.s2.total);
+			   		node.appendChild(textNode);
+					var myNode = document.getElementById('ul_s2')
+					while(myNode.firstChild)
 						myNode.removeChild(myNode.firstChild);
-					myNode.appendChild(node); */
+					myNode.appendChild(node);
 				} else {
 					// Tampilkan error di sini...
 					$("#tabpane_s2 .dataTable_wrapper").hide();
@@ -276,6 +291,9 @@ function submitFormCari(event) {
 							</div>
 							<div class="panel-body" id="tabpane_s0">
 								<div id="div_alert_s0" class="alert alert-danger"></div>
+								<div id="div_info_s0" class="alert alert-info">
+									<ul id="ul_s0"></ul>
+								</div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
 										id="tableJatengJogja" style="width:100%;">
@@ -316,6 +334,9 @@ function submitFormCari(event) {
 							</div>
 							<div class="panel-body" id="tabpane_s1">
 								<div id="div_alert_s1" class="alert alert-danger"></div>
+								<div id="div_info_s1" class="alert alert-info">
+									<ul id="ul_s2"></ul>
+								</div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
 										id="tableJogjaPartnership" style="width:100%;">
@@ -356,6 +377,9 @@ function submitFormCari(event) {
 							</div>
 							<div class="panel-body" id="tabpane_s2">
 								<div id="div_alert_s2" class="alert alert-danger"></div>
+								<div id="div_info_s2" class="alert alert-info">
+									<ul id="ul_s2"></ul>
+								</div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
 										id="tableAutelan" style="width:100%;">

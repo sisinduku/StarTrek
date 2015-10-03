@@ -40,7 +40,7 @@ class Ajax extends CI_Controller{
 			}
 			// Kita iterasi / request server satu per satu...
 			foreach ($serverArr as $idxServer => $itemServer) {
-				if($itemServer == "autelan")
+				if($idxServer == 2)
 					$jsonOutput['s'.$idxServer] = $this->autelan->getDataAutelan();
 				else
 					$jsonOutput['s'.$idxServer] = $this->api->getDataAPI($device, $itemServer);

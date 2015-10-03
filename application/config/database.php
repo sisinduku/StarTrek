@@ -101,8 +101,8 @@ $tnsname = '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.62.185.59)(PORT
 $db['autelan'] = array(
 		'dsn'	=> '',
 		'hostname' => $tnsname,
-		'username' => 'username',
-		'password' => '*********',
+		'username' => 'mart_wifi',
+		'password' => 'Martwifi_01',
 		'database' => '',
 		'dbdriver' => 'oci8',
 		'dbprefix' => '',

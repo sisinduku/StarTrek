@@ -42,8 +42,9 @@ class Main extends CI_Controller{
 	}
 	
 	public function parseAutelan(){
-		$this->load->model("Autelan");
-		echo $this->autelan->parseDB();
+		$this->load->model("autelan");
+		$result = $this->autelan->parseDB();
+		echo $result;
 	}
 	
 }

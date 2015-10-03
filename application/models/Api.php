@@ -79,6 +79,7 @@ class Api extends CI_Model {
 					switch ($device) {
 						case "ap" :
 							$arr_dat ['title'] = $this->server;
+							$arr_dat['total'] = intval($dataxml->count());
 							$arr_dat ['data'] = array ();
 							$i = 0;
 							$down = 0;
