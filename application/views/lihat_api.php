@@ -135,15 +135,19 @@ function submitFormCari(event) {
 				$("#tab_s2").show();
 				if ('list_data' in response.data.s2) {
 					$("#tabpane_s2 .dataTable_wrapper").show();
-			    	datatable3.rows.add(response.data.s2.list_data);
+			    	datatable3.rows.add(response.data.s2.list_data.data);
 			    	$("#div_info_s2").show();
 			   		var node = document.createElement("LI");
 			   		var textNode = document.createTextNode("Total AP : "+response.data.s2.total);
 			   		node.appendChild(textNode);
+			   		var node2 = document.createElement("LI");
+			   		var textNode2 = document.createTextNode("Jumlah AP yang DOWN : "+response.data.s2.list_data.down);
+			   		node2.appendChild(textNode2);
 					var myNode = document.getElementById('ul_s2')
 					while(myNode.firstChild)
 						myNode.removeChild(myNode.firstChild);
 					myNode.appendChild(node);
+					myNode.appendChild(node2);
 				} else {
 					// Tampilkan error di sini...
 					$("#tabpane_s2 .dataTable_wrapper").hide();
@@ -284,6 +288,7 @@ function submitFormCari(event) {
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane fade in active"
 						id="jatengjogja">
+<?php //======================================= SINDOKOM [ S0 ] ================================== ?>
 						<!-- DataTables Jateng Jogja -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -326,7 +331,7 @@ function submitFormCari(event) {
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="jogjapartnership">
-
+<?php //============================== Cisco Partnership [ S1 ] ================================== ?>
 						<!-- DataTables Jogja Partnership -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -335,7 +340,7 @@ function submitFormCari(event) {
 							<div class="panel-body" id="tabpane_s1">
 								<div id="div_alert_s1" class="alert alert-danger"></div>
 								<div id="div_info_s1" class="alert alert-info">
-									<ul id="ul_s2"></ul>
+									<ul id="ul_s1"></ul>
 								</div>
 								<div class="dataTable_wrapper">
 									<table class="table table-striped table-bordered table-hover"
@@ -369,7 +374,7 @@ function submitFormCari(event) {
 						</div>
 					</div>
 					<div role="tabpanel" class="tab-pane fade" id="autelan">
-
+<?php //================================== Cisco AUTELAN [ S2 ] ================================== ?>
 						<!-- DataTables Autelan -->
 						<div class="panel panel-default">
 							<div class="panel-heading">

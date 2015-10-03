@@ -71,10 +71,19 @@ class Autelan extends CI_Model {
 		}
 		
 		$query = $this->db->get ( 'tbl_autelan' );
-		
+		$data ['data'] = array();
+		$cntDown = 0;
+		// Pengulangan sekaligus hitung yang 'down'
 		foreach ( $query->result () as $row ) {
-			$data [$index ++] = $row;
+			$data ['data'][$index] = $row;
+			if (strtolower($row->status) == "down") {
+				// Perlu dikasi property background?
+				// $data ['data'][$index]['background'] = "#c62828";
+				$cntDown++;
+			}
+			$index++;
 		}
+		$data['down'] = $cntDown;
 		$result = array (
 				'list_data' => $data,
 				'msg' => 'Success',
