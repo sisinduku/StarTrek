@@ -21,7 +21,6 @@ var REQUEST_URL = "<?php echo site_url("/ajax/cari/ap");?>";
 // Fungsi init halaman, dipanggil setiap kali halaman selesai diload (onReady)
 function init_page() {
 	$("#form_cari").submit(submitFormCari);
-	
 }
 function submitFormCari(event) {
 	//==== Validasi dulu
@@ -172,6 +171,8 @@ function submitFormCari(event) {
 		$("#div_loader").hide();
 		$("#form_cari button[type=submit], #form_cari input[type=text]")
 			.removeAttr('disabled');
+		$("#panel-form").hide(500);
+		
 	});
 	event.preventDefault();
 }
@@ -180,7 +181,9 @@ function submitFormCari(event) {
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header"><?php echo $pageHeader;?></h1>
-			<div class="panel panel-default">
+			<button class="btn btn-info" id="btn-search">Form Pencarian</button>
+			<div class="panel panel-default" id="panel-form">
+				<span class="glyphicon glyphicon-triangle-top" id="search-arrow"></span>
 				<div class="panel-body">
 					<form method="POST" action="#submit" id="form_cari">
 						<table class="table">

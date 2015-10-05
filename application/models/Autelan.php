@@ -29,28 +29,33 @@ class Autelan extends CI_Model {
 									p_contr_name = 'WAC-D4-KBU02' OR
 									p_contr_name = 'WAC-D4-KBU03'
 				" );
-		if ($query->num_rows () > 0)
-			$this->db->empty_table ( 'tbl_autelan' );
 		
-		foreach ( $query->result () as $row ) {
-			if($row->LOC_ID == null)
-				$row->LOC_ID = "Not Set";
-			$temp = array (
-					"id" => $index+1,
-					"loc_id" => $row->LOC_ID,
-					"ap_name" => $row->AP_NAME,
-					"mac_address" => $row->MAC_ADDRESS,
-					"ap_ip_address" => $row->AP_IP_ADDRESS,
-					"location" => $row->LOCATION,
-					"status" => $row->STATUS 
-			);
+		if ($query->num_rows () > 0){
+			$this->db->empty_table ( 'tbl_autelan' );
 			
-			// Memasukkan kedalam DB lokal
-			$data [$index ++] = $temp;
+			foreach ( $query->result () as $row ) {
+				if($row->LOC_ID == null)
+					$row->LOC_ID = "Not Set";
+				$temp = array (
+						"id" => $index+1,
+						"loc_id" => $row->LOC_ID,
+						"ap_name" => $row->AP_NAME,
+						"mac_address" => $row->MAC_ADDRESS,
+						"ap_ip_address" => $row->AP_IP_ADDRESS,
+						"location" => $row->LOCATION,
+						"status" => $row->STATUS
+				);
+					
+				// Memasukkan kedalam DB lokal
+				$data [$index ++] = $temp;
+			}
+			$this->db->insert_batch ( 'tbl_autelan', $data );
+			return $index;
 		}
-		$this->db->insert_batch ( 'tbl_autelan', $data );
-		return $index;
+		else 
+			return "Query Kosong";
 	}
+	
 	/**
 	 * Fungsi untuk mengambil data Autelan pada tbl_autelan
 	 *

@@ -104,6 +104,8 @@ body {
 
 .sidebar .arrow {
     float: right;
+    position: absolute;
+	right: 10px;
 }
 
 .sidebar .fa.arrow:before {
@@ -382,4 +384,21 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+#btn-search {
+	margin-bottom: 10px;
+}
+
+#panel-form{
+	position: relative;
+	margin-top: 10px;
+}
+
+#search-arrow{
+	font-size: 30px;
+	position: absolute;
+	left: 45px;
+	top: -22px;
+	color: #ddd;
 }

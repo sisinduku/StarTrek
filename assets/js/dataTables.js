@@ -37,6 +37,10 @@ $(document).ready(function() {
 		$("input:checkbox").removeAttr('checked');
 		return false;
 	});
+	$("#btn-search").click(function(){
+		$("#panel-form").toggle(500);
+		return false;
+	});
 
 	$('#tableJatengJogja').DataTable({
 		language : langDataTables,
