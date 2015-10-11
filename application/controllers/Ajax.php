@@ -27,7 +27,8 @@ class Ajax extends CI_Controller{
 		echo $this->_generate_json_error("Unrecognized action.");
 	}
 	
-	public function cari($device = "ap") {
+	
+	public function cari($device = "ap", $outputType = "json") {
 		if (!$this->_check_session()) exit;
 		if($this->input->post('submit') != false){
 			$jsonOutput = array();
@@ -48,10 +49,17 @@ class Ajax extends CI_Controller{
 			//$jsonOutput["jatengjogja"] = $this->api->getDataAPI($device);
 			//$jsonOutput["jogjapartnership"] = $this->api->getDataAPI($device);
 			
-			echo json_encode(array(
-				'status' => 'ok',
-				'data' => $jsonOutput
-			));
+			if ($outputType == "json") {
+				echo json_encode(array(
+					'status' => 'ok',
+					'data' => $jsonOutput
+				));
+			} else if ($outputType == "xlsx") {
+				
+			} else {
+				echo $this->_generate_json_error("Unknown file type.");
+			}
+			
 		} else {
 			echo $this->_generate_json_error("Argument expected.");
 		}

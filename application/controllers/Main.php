@@ -47,4 +47,55 @@ class Main extends CI_Controller{
 		echo $result;
 	}
 	
+	
+	/**
+	 * Fungsi untuk ekspor hasil pencarian ke Ms. Excel
+	 * @param string $device Device
+	 * @param string $outputType Tipe output
+	 */
+	public function ekspor($device = "ap", $outputType = "xlsx") {
+		if(!$this->load->cek_sesi()) exit;
+		
+		if($this->input->post('submit') != false){
+			$jsonOutput	= null;
+			$serverId	= $this->input->post('server_id');
+			$serverAddr	= $this->input->post('server_addr');
+			$searchField = $this->input->post ( 'searchBy' );
+			$searchQuery = $this->input->post ( 'search' );
+			
+			if (!is_numeric($serverId) || empty($serverAddr)) {
+				die("Invalid argument!");
+				return;
+			} else if (empty($searchField) || empty($searchQuery)) {
+				die("Argument expected.");
+				return;
+			}
+			
+			// Check server ID
+			if($serverId == 2) {
+				$this->load->model("autelan");
+				$jsonOutput = $this->autelan->getDataAutelan();
+			} else {
+				$this->load->model("api");
+				$jsonOutput = $this->api->getDataAPI($device, $serverAddr);
+			}
+			
+			if ($outputType == "xlsx") {
+				$this->load->helper('export_xlsx');
+				// Server ID 2 adalah autelan
+				if ($serverId == 2) {
+					do_autelan_export_xlsx($jsonOutput, $serverId, $serverAddr, $searchField, $searchQuery);
+				} else {
+					do_export_xlsx($jsonOutput, $serverId, $serverAddr, $searchField, $searchQuery);
+				}
+				
+			} else {
+				die("Invalid output type!");
+			}
+			
+		} else {
+			die("Argument expected.");
+		}
+	}
+	
 }
