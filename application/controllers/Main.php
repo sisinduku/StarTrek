@@ -42,15 +42,21 @@ class Main extends CI_Controller {
 		}
 	}
 	
-	public function ap_unverified($param = "UV") {
+	public function ap_unverified($param = "") {
 		if (! $this->load->cek_sesi ())
 			exit ();
 		$data ['useTables'] = true;		
 		
-		if ($param == "default"){
+		if ($param == "uv"){
 			$data ['pageTitle'] = "Lihat AP UV | StarTrek";
 			$data ['pageHeader'] = "Lihat Access Point UV";
-			
+			$this->load->template ( "datatable_unverified_ap_ui", $data );
+		} else if ($param == "divre0"){
+			$data ['pageTitle'] = "Lihat AP Divre0 | StarTrek";
+			$data ['pageHeader'] = "Lihat Access Point Divre0";
+			$this->load->template ( "datatable_unverified_ap_divre0", $data );
+		} else {
+			die("Unknown parameter!");
 		}
 	}
 	

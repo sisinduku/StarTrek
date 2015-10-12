@@ -101,7 +101,7 @@
                                     <a href="<?php echo site_url("/main/ap_unverified/uv");?>">AP UV</a>
                                 </li>
                                 <li>
-                                    <a href="#">AP Divre0</a>
+                                    <a href="<?php echo site_url("/main/ap_unverified/divre0");?>">AP Divre0</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
