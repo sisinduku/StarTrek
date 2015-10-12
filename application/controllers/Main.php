@@ -54,7 +54,6 @@ class Main extends CI_Controller {
 		}
 	}
 	
-	
 	/**
 	 * Fungsi untuk ekspor hasil pencarian ke Ms. Excel
 	 * @param string $device Device

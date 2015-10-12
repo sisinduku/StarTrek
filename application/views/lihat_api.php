@@ -29,6 +29,7 @@ function submitFormCari(event) {
 		alert("Silakan pilih paling tidak satu server.");
 		event.preventDefault();
 		return;
+		
 	}
 	
 	//==== Baru proses submit...

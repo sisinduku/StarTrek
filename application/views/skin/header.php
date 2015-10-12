@@ -92,7 +92,7 @@
                                     <a href="#">Alarm (Coming Soon)</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            <!-- /.nav-second-level  -->
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wifi fa-fw"></i> AP Unverified <span class="fa arrow"></span></a>

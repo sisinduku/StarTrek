@@ -12,6 +12,7 @@
 		<![endif]-->
 		<link href="<?php echo base_url("/assets/css/loginstyles.css");?>" rel="stylesheet">
 	</head>
+	
 	<body>
 		<!--login modal-->
 		<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">

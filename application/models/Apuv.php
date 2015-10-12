@@ -34,5 +34,6 @@ class Apuv extends CI_Model {
 			);
 			return $result;
 		}
+		
 	}
 }

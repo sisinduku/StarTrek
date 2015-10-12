@@ -101,8 +101,33 @@ $tnsname = '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.62.185.59)(PORT
 $db['oracle'] = array(
 		'dsn'	=> '',
 		'hostname' => $tnsname,
-		'username' => 'mart_wifi',
-		'password' => 'Martwifi_01',
+		'username' => '',
+		'password' => '',
+		'database' => '',
+		'dbdriver' => 'oci8',
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+);
+
+$tnsname1 = '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.16.254.70)(PORT = 1522))
+        (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = wcs)))';
+
+$db['sindokom'] = array(
+		'dsn'	=> '',
+		'hostname' => $tnsname1,
+		'username' => '',
+		'password' => '',
 		'database' => '',
 		'dbdriver' => 'oci8',
 		'dbprefix' => '',

@@ -162,6 +162,7 @@ class Api extends CI_Model {
 				}
 			}
 		}
+		
 		curl_close ( $ch );
 		return $msg;
 	}

@@ -17,7 +17,33 @@ class Parsing extends CI_Controller {
 		$this->load->model("oracledb");
 		
 		$result = $this->oracledb->getAPUVCisco();
-		var_dump($result);
+		$jumlah = array();
+		for($i = 0; $i < 34; $i++)
+			$jumlah[$i] = 0;
+		echo "<table border=1>";
+		foreach ($result as $row){
+			$index = 0;
+			echo "<tr>";
+			foreach ($row as $key => $konten){
+				echo "<td>". $konten. "</td>";
+				if($jumlah[$index] < strlen($konten))
+					$jumlah[$index] = strlen($konten); 
+				$index++;
+			}
+			echo "<td>". $index. "</td>";
+			echo "</tr>";
+		}
+		
+		echo "<tr>";
+		foreach ($jumlah as $data)
+			echo "<td>". $data. "</td>";
+		echo "</tr>";
+		echo "<tr>";
+		for ($i =1; $i <= 34; $i++)
+			echo "<td>". $i. "</td>";
+		echo "</tr>";
+		echo "</table>";
+		print_r(array_keys($result[0]));
 	}
 	
 	public function parseUVAutelan() {

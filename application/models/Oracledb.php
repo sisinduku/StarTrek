@@ -142,11 +142,12 @@ class Oracledb extends CI_Model {
 				// Memasukkan kedalam DB lokal
 				$data [$index ++] = $temp;
 			}
-			$this->db->insert_batch ( 'tbl_uvautelan', $data );
+			$this->db->insert_batch ( 'tbl_apunverif', $data );
 			return $index;
 		}else{
-			$this->db->empty_table ( 'tbl_uvautelan' );
+			$this->db->empty_table ( 'ttbl_apunverif' );
 			return "Query Kosong";
+			
 		}
 	}
 }
