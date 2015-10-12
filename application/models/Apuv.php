@@ -7,7 +7,7 @@ class Apuv extends CI_Model {
 	}
 	
 	public function getUVAutelan() {
-		$query = $this->db->get ( 'tbl_uvautelan' );
+		$query = $this->db->get_where ( 'tbl_apunverif', array('tipe' => 'uvautelan') );
 		$data ['data'] = array();
 		$index = 0;
 		$cntDown = 0;
