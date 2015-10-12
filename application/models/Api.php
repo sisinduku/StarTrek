@@ -97,7 +97,6 @@ class Api extends CI_Model {
 										// Kalo down dikasi nama down sama backgroundnya merah
 										$row->accessPointsDTO->controllerName = "DOWN";
 										$row->accessPointsDTO->controllerIpAddress = "-";
-										$row->accessPointsDTO->background = "#c62828";
 										$down ++;
 									}
 									

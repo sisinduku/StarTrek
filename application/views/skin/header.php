@@ -94,6 +94,18 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wifi fa-fw"></i> AP Unverified <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo site_url("/main/ap_unverified/uv");?>">AP UV</a>
+                                </li>
+                                <li>
+                                    <a href="#">AP Divre0</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

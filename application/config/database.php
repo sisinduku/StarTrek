@@ -98,7 +98,7 @@ $db['default'] = array(
 $tnsname = '(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.62.185.59)(PORT = 1521))
         (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = dwhmart)))';
         
-$db['autelan'] = array(
+$db['oracle'] = array(
 		'dsn'	=> '',
 		'hostname' => $tnsname,
 		'username' => 'mart_wifi',

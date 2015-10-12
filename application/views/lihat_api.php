@@ -186,79 +186,81 @@ function submitFormCari(event) {
 				<span class="glyphicon glyphicon-triangle-top" id="search-arrow"></span>
 				<div class="panel-body">
 					<form method="POST" action="#submit" id="form_cari">
-						<table class="table">
-							<tr>
-								<th colspan="6">Pilih Server:
+						<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<th colspan="6">Pilih Server:
+										
+									</th>
+								</tr>
+								<tr>
+									<td colspan="6">
+										<!-- <input type="checkbox" name="selectAll" id="selectAll">  -->
+										<a href="#check-all" id="a_serverCheckAll">Pilih Semua</a> |
+										<a href="#uncheck-all" id="a_serverUnCheckAll">Kosongkan Semua</a></td>
+								</tr>
+								<tr>
+									<td colspan="2"><input type="checkbox" class="chk_server" name="server[0]"
+										id="chk_server1"
+										value="10.16.254.70"> <label for="chk_server1">Cisco Sindokom</label></td>
+									<td colspan="1"><input type="checkbox" class="chk_server" name="server[1]"
+										id="chk_server2"
+										value="10.16.55.196"> <label for="chk_server2">Cisco Partnership</label></td>
+									<td colspan="2"><input type="checkbox" class="chk_server" name="server[2]"
+										id="chk_server3"
+										value="autelan"> <label for="chk_server3">Autelan</label></td>
+								</tr>
+								<tr>
+									<th colspan="6">Mencari Berdasarkan:
 									
-								</th>
-							</tr>
-							<tr>
-								<td colspan="6">
-									<!-- <input type="checkbox" name="selectAll" id="selectAll">  -->
-									<a href="#check-all" id="a_serverCheckAll">Pilih Semua</a> |
-									<a href="#uncheck-all" id="a_serverUnCheckAll">Kosongkan Semua</a></td>
-							</tr>
-							<tr>
-								<td colspan="2"><input type="checkbox" class="chk_server" name="server[0]"
-									id="chk_server1"
-									value="10.16.254.70"> <label for="chk_server1">Cisco Sindokom</label></td>
-								<td colspan="1"><input type="checkbox" class="chk_server" name="server[1]"
-									id="chk_server2"
-									value="10.16.55.196"> <label for="chk_server2">Cisco Partnership</label></td>
-								<td colspan="2"><input type="checkbox" class="chk_server" name="server[2]"
-									id="chk_server3"
-									value="autelan"> <label for="chk_server3">Autelan</label></td>
-							</tr>
-							<tr>
-								<th colspan="6">Mencari Berdasarkan:
-								
-								</th>
-							</tr>
-							<tr>
-								<td><input type="radio" name="searchBy" value="name"
-										id="radio_searchByName" required>
-									<label for="radio_searchByName">AP Name</label></td>
-								<td><input type="radio" name="searchBy" value="location"
-										id="radio_searchByLoc" required> 
-									<label for="radio_searchByLoc">Lokasi</label></td>
-								<td><input type="radio" name="searchBy" value="ethernetMac"
-										id="radio_searchByEthernetMac" required> 
-									<label for="radio_searchByEthernetMac">Eth MAC Address</label></td>
-								<td><input type="radio" name="searchBy" value="serialNumber"
-										id="radio_searchBySerialNumber" required>
-									<label for="radio_searchBySerialNumber">Serial Number</label></td>
-								<td><input type="radio" name="searchBy" value="macAddress"
-										id="radio_searchByMacAddress" required>
-									<label for="radio_searchByMacAddress">Radio MAC Address</label></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="6">
-									<div class="input-group">
-										<input type="text" name="search" class="form-control"
-											placeholder="Mencari..." required>
-										<span class="input-group-btn">
-											<button class="btn btn-primary" type="submit">Cari</button>
-										</span>
-										<input type='hidden' name='submit' value='1' />
-									</div>
-									<!-- /input-group -->
-								</td>
-							</tr>
-							<tr>
-								<td colspan="6">
-									<div id="div_request_result" class="alert alert-danger"></div>
-									<?php
-									$errString = validation_errors();
-									if(! empty ( $errString )){
-										echo "<div class= \"alert alert-danger\"><ol type='1'>";
-										if(! empty ( $errString )) echo validation_errors('<li>', '</li>');
-										echo "</ol></div>";
-									}
-									?>
-								</td>
-							</tr>
-						</table>
+									</th>
+								</tr>
+								<tr>
+									<td><input type="radio" name="searchBy" value="name"
+											id="radio_searchByName" required>
+										<label for="radio_searchByName">AP Name</label></td>
+									<td><input type="radio" name="searchBy" value="location"
+											id="radio_searchByLoc" required> 
+										<label for="radio_searchByLoc">Lokasi</label></td>
+									<td><input type="radio" name="searchBy" value="ethernetMac"
+											id="radio_searchByEthernetMac" required> 
+										<label for="radio_searchByEthernetMac">Eth MAC Address</label></td>
+									<td><input type="radio" name="searchBy" value="serialNumber"
+											id="radio_searchBySerialNumber" required>
+										<label for="radio_searchBySerialNumber">Serial Number</label></td>
+									<td><input type="radio" name="searchBy" value="macAddress"
+											id="radio_searchByMacAddress" required>
+										<label for="radio_searchByMacAddress">Radio MAC Address</label></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td colspan="6">
+										<div class="input-group">
+											<input type="text" name="search" class="form-control"
+												placeholder="Mencari..." required>
+											<span class="input-group-btn">
+												<button class="btn btn-primary" type="submit">Cari</button>
+											</span>
+											<input type='hidden' name='submit' value='1' />
+										</div>
+										<!-- /input-group -->
+									</td>
+								</tr>
+								<tr>
+									<td colspan="6">
+										<div id="div_request_result" class="alert alert-danger"></div>
+										<?php
+										$errString = validation_errors();
+										if(! empty ( $errString )){
+											echo "<div class= \"alert alert-danger\"><ol type='1'>";
+											if(! empty ( $errString )) echo validation_errors('<li>', '</li>');
+											echo "</ol></div>";
+										}
+										?>
+									</td>
+								</tr>
+							</table>
+						</div>
 					</form>
 				</div>
 				<div style="min-height: 48px;" >
