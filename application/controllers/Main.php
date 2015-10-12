@@ -48,10 +48,13 @@ class Main extends CI_Controller {
 		$data ['useTables'] = true;		
 		
 		if ($param == "uv"){
+			$this->load->model('apuv');
+			$data['apData'] = $this->apuv->getUVAutelan();
 			$data ['pageTitle'] = "Lihat AP UV | StarTrek";
 			$data ['pageHeader'] = "Lihat Access Point UV";
-			$this->load->template ( "datatable_unverified_ap_ui", $data );
+			$this->load->template ( "datatable_unverified_ap_uv", $data );
 		} else if ($param == "divre0"){
+			
 			$data ['pageTitle'] = "Lihat AP Divre0 | StarTrek";
 			$data ['pageHeader'] = "Lihat Access Point Divre0";
 			$this->load->template ( "datatable_unverified_ap_divre0", $data );

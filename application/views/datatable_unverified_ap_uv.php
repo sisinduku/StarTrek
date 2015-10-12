@@ -69,6 +69,7 @@ function init_page() {
 								style="width: 100%;" id="table-autelan">
 								<thead>
 									<tr>
+										<th align='center'>ID</th>
 										<th align='center'>WITEL</th>
 										<th align='center'>LOC_ID</th>
 										<th align='center'>AP_NAME</th>
@@ -106,7 +107,19 @@ function init_page() {
 									</tr>
 								</thead>
 								<tbody>
+<?php 
+if (!empty($apData)) {
+	foreach ($apData['list_data']['data'] as $itemRow) {
+		echo "<tr>";
+		foreach ($itemRow as $colKey => $colValue) {
+			if ($colKey != 'tipe')
+				echo "<td>".$colValue."</td>\n";
+		}
+		echo "</tr>\n";
+	}
+}
 
+?>
 								</tbody>
 							</table>
 						</div>
@@ -127,6 +140,7 @@ function init_page() {
 								style="width: 100%;" id="table-cisco">
 								<thead>
 									<tr>
+										<th align='center'>ID</th>
 										<th align='center'>WITEL</th>
 										<th align='center'>LOC_ID</th>
 										<th align='center'>AP_NAME</th>
