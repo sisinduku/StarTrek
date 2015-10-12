@@ -60,5 +60,16 @@ class Autelan extends CI_Model {
 			);
 			return $result;
 		}
+
+		$data['down'] = $cntDown;
+		$data['total'] = $index;
+		$result = array (
+				'list_data' => $data,
+				'msg' => 'Success',
+				'total' => $index,
+				"field" => $this->searchBy,
+				"query" => $this->searchQuery
+		);
+		return $result;
 	}
 }

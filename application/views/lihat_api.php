@@ -76,6 +76,10 @@ function submitFormCari(event) {
 						myNode.removeChild(myNode.firstChild);
 					myNode.appendChild(node);
 					myNode.appendChild(node2);
+
+					$("#s0_form_savexls input[name='searchBy']").val(response.data.s0.field);
+					$("#s0_form_savexls input[name='search']").val(response.data.s0.query);
+					$("#s0_form_savexls input[name='server_addr']").val(response.data.s0.server);
 				} else {
 
 					// Tampilkan error di sini...
@@ -112,6 +116,10 @@ function submitFormCari(event) {
 						myNode.removeChild(myNode.firstChild);
 					myNode.appendChild(node);
 					myNode.appendChild(node2);
+
+					$("#s1_form_savexls input[name='searchBy']").val(response.data.s1.field);
+					$("#s1_form_savexls input[name='search']").val(response.data.s1.query);
+					$("#s1_form_savexls input[name='server_addr']").val(response.data.s1.server);
 				} else {
 					// Tampilkan error di sini...
 					$("#tabpane_s1 .dataTable_wrapper").hide();
@@ -147,6 +155,9 @@ function submitFormCari(event) {
 						myNode.removeChild(myNode.firstChild);
 					myNode.appendChild(node);
 					myNode.appendChild(node2);
+
+					$("#s2_form_savexls input[name='searchBy']").val(response.data.s2.field);
+					$("#s2_form_savexls input[name='search']").val(response.data.s2.query);
 				} else {
 					// Tampilkan error di sini...
 					$("#tabpane_s2 .dataTable_wrapper").hide();
@@ -305,6 +316,16 @@ function submitFormCari(event) {
 									<ul id="ul_s0"></ul>
 								</div>
 								<div class="dataTable_wrapper">
+									<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
+										method="POST" id="s0_form_savexls" target="_blank">
+										<input type="hidden" name="submit" value="true" />
+										<input type="hidden" name="server_id" value="0"/>
+										<input type="hidden" name="server_addr" value=""/>
+										<input type="hidden" name="searchBy" value=""/>
+										<input type="hidden" name="search" value=""/>
+										<button type="submit" class="btn btn-default"
+											><span class="glyphicon glyphicon-save"></span>&nbsp;Download versi Excel</button>
+									</form>
 									<table class="table table-striped table-bordered table-hover"
 										id="tableJatengJogja" style="width:100%;">
 										<thead>
@@ -348,6 +369,16 @@ function submitFormCari(event) {
 									<ul id="ul_s1"></ul>
 								</div>
 								<div class="dataTable_wrapper">
+									<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
+										method="POST" id="s1_form_savexls" target="_blank">
+										<input type="hidden" name="submit" value="true" />
+										<input type="hidden" name="server_id" value="1"/>
+										<input type="hidden" name="server_addr" value=""/>
+										<input type="hidden" name="searchBy" value=""/>
+										<input type="hidden" name="search" value=""/>
+										<button type="submit" class="btn btn-default"
+											><span class="glyphicon glyphicon-save"></span>&nbsp;Download versi Excel</button>
+									</form>
 									<table class="table table-striped table-bordered table-hover"
 										id="tableJogjaPartnership" style="width:100%;">
 										<thead>
@@ -391,6 +422,16 @@ function submitFormCari(event) {
 									<ul id="ul_s2"></ul>
 								</div>
 								<div class="dataTable_wrapper">
+									<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
+										method="POST" id="s2_form_savexls" target="_blank">
+										<input type="hidden" name="submit" value="true" />
+										<input type="hidden" name="server_id" value="2"/>
+										<input type="hidden" name="server_addr" value="autelan"/>
+										<input type="hidden" name="searchBy" value=""/>
+										<input type="hidden" name="search" value=""/>
+										<button type="submit" class="btn btn-default"
+											><span class="glyphicon glyphicon-save"></span>&nbsp;Download versi Excel</button>
+									</form>
 									<table class="table table-striped table-bordered table-hover"
 										id="tableAutelan" style="width:100%;">
 										<thead>

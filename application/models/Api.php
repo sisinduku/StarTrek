@@ -112,6 +112,8 @@ class Api extends CI_Model {
 										"code" => 0,
 										"msg" => "Success",
 										"server" => $server,
+										"field" => $this->searchBy,
+										"query" => $this->searchQuery,
 										"list_data" => $arr_dat
 								);
 							} else {
