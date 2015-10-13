@@ -62,21 +62,22 @@ class Oracledb extends CI_Model {
 	}
 	
 	public function getAP(){
-		$result = 0;
+		$result = array();
 		$this->db->empty_table ( 'tbl_apunverif' );
 		$this->db->empty_table ( 'tbl_apdivre' );
 		$this->db->query("ALTER TABLE tbl_apunverif AUTO_INCREMENT = 1");
 		$this->db->query("ALTER TABLE tbl_apdivre AUTO_INCREMENT = 1");
-		if($this->parseDBAutelan() != "kosong" && $this->getAPUVAutelan() != "kosong" && $this->getAPUVCisco() != "kosong" && $this->getDivreAutelan() != "kosong" && $this->getDivreCisco() != "kosong"){
-			$result += $this->getAPUVAutelan();
-			$result += $this->getAPUVCisco();
-			$result += $this->parseDBAutelan();
-			$result += $this->getDivreAutelan();
-			$result += $this->getDivreCisco();
+		$result[0] = $this->getAPUVAutelan();
+		$result[1] = $this->getAPUVCisco();
+		$result[2] = $this->parseDBAutelan();
+		$result[3] = $this->getDivreAutelan();
+		$result[4] = $this->getDivreCisco();
+		if(is_numeric($result[0]) && is_numeric($result[1]) && is_numeric($result[3]) && is_numeric($result[4])){
+			$result[0] += $result[1] + $result[2] + $result[3] + $result[4];
 		}else{
-			$result = "Query kosong";
+			$result[0] = "Query kosong";
 		}
-		return $result;
+		return $result[0];
 	}
 	
 	public function getAPUVCisco() {
@@ -137,8 +138,7 @@ class Oracledb extends CI_Model {
 						"partnership" => $row->PARTNERSHIP,
 						"nms_source" => $row->NMS_SOURCE,
 						"contr_name" => $row->CONTR_NAME,
-						"p_contr_name" => $row->P_CONTR_NAME,
-						"tipe" => "uvcisco"
+						"p_contr_name" => $row->P_CONTR_NAME
 				);
 				// Memasukkan kedalam DB lokal
 				$data [$index ++] = $temp;
@@ -208,8 +208,7 @@ class Oracledb extends CI_Model {
 						"partnership" => $row->PARTNERSHIP,
 						"nms_source" => $row->NMS_SOURCE,
 						"contr_name" => $row->CONTR_NAME,
-						"p_contr_name" => $row->P_CONTR_NAME,
-						"tipe" => "uvautelan"
+						"p_contr_name" => $row->P_CONTR_NAME
 				);
 				// Memasukkan kedalam DB lokal
 				$data [$index ++] = $temp;
@@ -280,7 +279,7 @@ class Oracledb extends CI_Model {
 						"sn" => $row->SN,
 						"status" => $row->STATUS,
 						"nms_source" => $row->NMS_SOURCE,
-						"tipe" => "divrecisco"
+						"tipe" => "divreautelan"
 				);
 				$data [$index ++] = $temp;
 			}

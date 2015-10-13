@@ -88,9 +88,6 @@
                                 <li>
                                     <a href="<?php echo site_url("/main/lihat_api/ap");?>">Access Point</a>
                                 </li>
-                                <li>
-                                    <a href="#">Alarm (Coming Soon)</a>
-                                </li>
                             </ul>
                             <!-- /.nav-second-level  -->
                         </li>

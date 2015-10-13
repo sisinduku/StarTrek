@@ -258,19 +258,6 @@ function submitFormCari(event) {
 										<!-- /input-group -->
 									</td>
 								</tr>
-								<tr>
-									<td colspan="6">
-										<div id="div_request_result" class="alert alert-danger"></div>
-										<?php
-										$errString = validation_errors();
-										if(! empty ( $errString )){
-											echo "<div class= \"alert alert-danger\"><ol type='1'>";
-											if(! empty ( $errString )) echo validation_errors('<li>', '</li>');
-											echo "</ol></div>";
-										}
-										?>
-									</td>
-								</tr>
 							</table>
 						</div>
 					</form>

@@ -49,12 +49,15 @@ class Main extends CI_Controller {
 		
 		if ($param == "uv"){
 			$this->load->model('apuv');
-			$data['apData'] = $this->apuv->getUVAutelan();
+			$data['apDataAutelan'] = $this->apuv->getUVAutelan();
+			$data['apDataCisco'] = $this->apuv->getUVCisco();
 			$data ['pageTitle'] = "Lihat AP UV | StarTrek";
 			$data ['pageHeader'] = "Lihat Access Point UV";
 			$this->load->template ( "datatable_unverified_ap_uv", $data );
 		} else if ($param == "divre0"){
-			
+			$this->load->model('apuv');
+			$data['apDataAutelan'] = $this->apuv->getDivreAutelan();
+			$data['apDataCisco'] = $this->apuv->getDivreCisco();
 			$data ['pageTitle'] = "Lihat AP Divre0 | StarTrek";
 			$data ['pageHeader'] = "Lihat Access Point Divre0";
 			$this->load->template ( "datatable_unverified_ap_divre0", $data );

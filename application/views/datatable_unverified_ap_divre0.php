@@ -57,66 +57,130 @@ function init_page() {
 <?php //======================================= AUTELAN ================================== ?>
 					<div role="tabpanel" class="tab-pane fade in active"
 						id="tab-autelan">
-						<div class="dataTable_wrapper">
-							<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
-								method="POST" id="s0_form_savexls" target="_blank">
-								<button type="submit" class="btn btn-default">
-									<span class="glyphicon glyphicon-save"></span>&nbsp;Download
-									versi Excel
-								</button>
-							</form>
-							<table class="table table-striped table-bordered table-hover"
-								style="width: 100%;" id="table-autelan">
-								<thead>
-									<tr>
-										<th align='center'>LOC_ID</th>
-										<th align='center'>AP_NAME</th>
-										<th align='center'>LOCATION</th>
-										<th align='center'>MAC_ADDRESS</th>
-										<th align='center'>AP_IP_ADDRESS</th>
-										<th align='center'>SN</th>
-										<th align='center'>STATUS</th>
-										<th align='center'>NMS_SOURCE</th>
-									</tr>
-								</thead>
-								<tbody>
-
-								</tbody>
-							</table>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">UV Autelan</h3>
+							</div>
+							<div class="panel-body" id="tabpane_s0">
+								<?php 
+								if(isset($apDataAutelan['list_data'])){
+									echo '<div id="div_info_s0" class="alert alert-info">';
+									echo '<ul id="ul_s0">';
+									echo 'Total AP : '. $apDataAutelan['total'];
+									echo '</ul>';
+									echo '</div>';
+								}else{
+									echo '<div id="div_alert_s0" class="alert alert-danger">';
+									echo $apDataAutelan['msg'];
+									echo '</div>'; 
+								}
+								?>
+								<div class="dataTable_wrapper">
+									<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
+										method="POST" id="s0_form_savexls" target="_blank">
+										<button type="submit" class="btn btn-default">
+											<span class="glyphicon glyphicon-save"></span>&nbsp;Download
+											versi Excel
+										</button>
+									</form>
+									<table class="table table-striped table-bordered table-hover"
+										style="width: 100%;" id="table-autelan">
+										<thead>
+											<tr>
+												<th align='center'>LOC_ID</th>
+												<th align='center'>AP_NAME</th>
+												<th align='center'>LOCATION</th>
+												<th align='center'>MAC_ADDRESS</th>
+												<th align='center'>AP_IP_ADDRESS</th>
+												<th align='center'>SN</th>
+												<th align='center'>STATUS</th>
+												<th align='center'>NMS_SOURCE</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php 
+										if (!empty($apDataAutelan)) {
+											foreach ($apDataAutelan['list_data']['data'] as $itemRow) {
+												echo "<tr>";
+												foreach ($itemRow as $colKey => $colValue) {
+													if ($colKey != 'id' && $colKey != 'tipe'){
+														echo "<td>".$colValue."</td>\n";
+													}
+												}
+												echo "</tr>\n";
+											}
+										}
+										?>
+										</tbody>
+									</table>
+								</div>
+								<!-- End table wrapper -->
+							</div>
 						</div>
-						<!-- End table wrapper -->
 					</div>
 <?php //======================================= CISCO ================================== ?>
 					<div role="tabpanel" class="tab-pane fade in"
 						id="tab-cisco">
-						<div class="dataTable_wrapper">
-							<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
-								method="POST" id="s1_form_savexls" target="_blank">
-								<button type="submit" class="btn btn-default">
-									<span class="glyphicon glyphicon-save"></span>&nbsp;Download
-									versi Excel
-								</button>
-							</form>
-							<table class="table table-striped table-bordered table-hover"
-								style="width: 100%;" id="table-cisco">
-								<thead>
-									<tr>
-										<th align='center'>LOC_ID</th>
-										<th align='center'>AP_NAME</th>
-										<th align='center'>LOCATION</th>
-										<th align='center'>MAC_ADDRESS</th>
-										<th align='center'>AP_IP_ADDRESS</th>
-										<th align='center'>SN</th>
-										<th align='center'>STATUS</th>
-										<th align='center'>NMS_SOURCE</th>
-									</tr>
-								</thead>
-								<tbody>
-
-								</tbody>
-							</table>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">UV Cisco</h3>
+							</div>
+							<div class="panel-body" id="tabpane_s0">
+								<?php 
+								if(isset($apDataCisco['list_data'])){
+									echo '<div id="div_info_s0" class="alert alert-info">';
+									echo '<ul id="ul_s0">';
+									echo 'Total AP : '. $apDataCisco['total'];
+									echo '</ul>';
+									echo '</div>';
+								}else{
+									echo '<div id="div_alert_s0" class="alert alert-danger">';
+									echo $apDataCisco['msg'];
+									echo '</div>'; 
+								}
+								?>
+								<div class="dataTable_wrapper">
+									<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
+										method="POST" id="s1_form_savexls" target="_blank">
+										<button type="submit" class="btn btn-default">
+											<span class="glyphicon glyphicon-save"></span>&nbsp;Download
+											versi Excel
+										</button>
+									</form>
+									<table class="table table-striped table-bordered table-hover"
+										style="width: 100%;" id="table-cisco">
+										<thead>
+											<tr>
+												<th align='center'>LOC_ID</th>
+												<th align='center'>AP_NAME</th>
+												<th align='center'>LOCATION</th>
+												<th align='center'>MAC_ADDRESS</th>
+												<th align='center'>AP_IP_ADDRESS</th>
+												<th align='center'>SN</th>
+												<th align='center'>STATUS</th>
+												<th align='center'>NMS_SOURCE</th>
+											</tr>
+										</thead>
+										<tbody>
+										<?php 
+										if (!empty($apDataCisco)) {
+											foreach ($apDataCisco['list_data']['data'] as $itemRow) {
+												echo "<tr>";
+												foreach ($itemRow as $colKey => $colValue) {
+													if ($colKey != 'id' && $colKey != 'tipe'){
+														echo "<td>".$colValue."</td>\n";
+													}														
+												}
+												echo "</tr>\n";
+											}
+										}
+										?>
+										</tbody>
+									</table>
+								</div>
+								<!-- End table wrapper -->
+							</div>
 						</div>
-						<!-- End table wrapper -->
 					</div>
 				</div>
 			</div><!-- End Tab Container -->
