@@ -49,20 +49,55 @@ class Main extends CI_Controller {
 		
 		if ($param == "uv"){
 			$this->load->model('apuv');
+			$exportType = $this->input->get('type');
+			
 			$data['apDataAutelan'] = $this->apuv->getUVAutelan();
 			$data['apDataCisco'] = $this->apuv->getUVCisco();
 			$data ['pageTitle'] = "Lihat AP UV | StarTrek";
 			$data ['pageHeader'] = "Lihat Access Point UV";
-			$this->load->template ( "datatable_unverified_ap_uv", $data );
+			
+			if ($exportType == "xlsx") {
+				$this->load->helper('export_xlsx_unverified');
+				$serverName = $this->input->get('server');
+				if ($serverName == "autelan") {
+					do_export_xlsx_uv($data['apDataAutelan'], "uv", "Autelan");
+				} else if ($serverName == "cisco") {
+					do_export_xlsx_uv($data['apDataCisco'], "uv", "Cisco");
+				} else {
+					die("Unknown server name.");
+					return;
+				}
+				
+			} else {
+				$this->load->template ( "datatable_unverified_ap_uv", $data );
+			}
+				
+			
 		} else if ($param == "divre0"){
 			$this->load->model('apuv');
+			$exportType = $this->input->get('type');
+			
 			$data['apDataAutelan'] = $this->apuv->getDivreAutelan();
 			$data['apDataCisco'] = $this->apuv->getDivreCisco();
 			$data ['pageTitle'] = "Lihat AP Divre0 | StarTrek";
 			$data ['pageHeader'] = "Lihat Access Point Divre0";
-			$this->load->template ( "datatable_unverified_ap_divre0", $data );
+			if ($exportType == "xlsx") {
+				$this->load->helper('export_xlsx_unverified');
+				$serverName = $this->input->get('server');
+				if ($serverName == "autelan") {
+					do_export_xlsx_uv($data['apDataAutelan'], "divre0", "Autelan");
+				} else if ($serverName == "cisco") {
+					do_export_xlsx_uv($data['apDataCisco'], "divre0", "Cisco");
+				} else {
+					die("Unknown server name.");
+					return;
+				}
+			} else {
+				$this->load->template ( "datatable_unverified_ap_divre0", $data );
+			}
 		} else {
 			die("Unknown parameter!");
+			return;
 		}
 	}
 	

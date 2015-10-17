@@ -8,10 +8,17 @@ class Apuv extends CI_Model {
 	
 	public function getUVAutelan() {
 		$query = $this->db->get_where ( 'tbl_apunverif', array('jenis' => 'AUTELAN') );
+		$fieldArray = $query->list_fields();
+		
 		$data ['data'] = array();
-		$index = 0;
+		$data ['fields'] = array();
 		$cntDown = 0;
 		if ($query->num_rows() > 0){
+			$index = 0;
+			foreach ( $fieldArray as $field ) {
+				$data ['fields'][$index++] = $field;
+			}
+			$index = 0;
 			foreach ( $query->result () as $row ) {
 				$data ['data'][$index++] = $row;
 			}
@@ -32,10 +39,18 @@ class Apuv extends CI_Model {
 	
 	public function getUVCisco() {
 		$query = $this->db->get_where ( 'tbl_apunverif', array('jenis' => 'CISCO') );
+		$fieldArray = $query->list_fields();
+		
 		$data ['data'] = array();
-		$index = 0;
+		$data ['fields'] = array();
+		
 		$cntDown = 0;
 		if ($query->num_rows() > 0){
+			$index = 0;
+			foreach ( $fieldArray as $field ) {
+				$data ['fields'][$index++] = $field;
+			}
+			$index = 0;
 			foreach ( $query->result () as $row ) {
 				$data ['data'][$index++] = $row;
 			}
@@ -55,10 +70,18 @@ class Apuv extends CI_Model {
 	
 	public function getDivreAutelan() {
 		$query = $this->db->get_where ( 'tbl_apdivre', array('tipe' => 'divreautelan') );
+		$fieldArray = $query->list_fields();
+		
 		$data ['data'] = array();
-		$index = 0;
+		$data ['fields'] = array();
+		
 		$cntDown = 0;
 		if ($query->num_rows() > 0){
+			$index = 0;
+			foreach ( $fieldArray as $field ) {
+				$data ['fields'][$index++] = $field;
+			}
+			$index = 0;
 			foreach ( $query->result () as $row ) {
 				$data ['data'][$index++] = $row;
 			}
@@ -78,10 +101,18 @@ class Apuv extends CI_Model {
 	
 	public function getDivreCisco() {
 		$query = $this->db->get_where ( 'tbl_apdivre', array('tipe' => 'divrecisco') );
+		$fieldArray = $query->list_fields();
+		
 		$data ['data'] = array();
-		$index = 0;
+		$data ['fields'] = array();
+		
 		$cntDown = 0;
 		if ($query->num_rows() > 0){
+			$index = 0;
+			foreach ( $fieldArray as $field ) {
+				$data ['fields'][$index++] = $field;
+			}
+			$index = 0;
 			foreach ( $query->result () as $row ) {
 				$data ['data'][$index++] = $row;
 			}

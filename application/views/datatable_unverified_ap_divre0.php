@@ -76,13 +76,12 @@ function init_page() {
 								}
 								?>
 								<div class="dataTable_wrapper">
-									<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
-										method="POST" id="s0_form_savexls" target="_blank">
-										<button type="submit" class="btn btn-default">
-											<span class="glyphicon glyphicon-save"></span>&nbsp;Download
+									<a href="<?php echo site_url("/main/ap_unverified/divre0?type=xlsx&amp;server=autelan"); ?>"
+										class="btn btn-default <?php
+											if (empty($apDataAutelan['list_data']['data'])) echo "disabled"; ?>"
+											target="_blank"><span class="glyphicon glyphicon-save"></span>&nbsp;Download
 											versi Excel
-										</button>
-									</form>
+									</a>
 									<table class="table table-striped table-bordered table-hover"
 										style="width: 100%;" id="table-autelan">
 										<thead>
@@ -99,7 +98,7 @@ function init_page() {
 										</thead>
 										<tbody>
 										<?php 
-										if (!empty($apDataAutelan)) {
+										if (!empty($apDataAutelan['list_data']['data'])) {
 											foreach ($apDataAutelan['list_data']['data'] as $itemRow) {
 												echo "<tr>";
 												foreach ($itemRow as $colKey => $colValue) {
@@ -140,13 +139,12 @@ function init_page() {
 								}
 								?>
 								<div class="dataTable_wrapper">
-									<form action="<?php echo base_url("/main/ekspor/ap/xlsx"); ?>"
-										method="POST" id="s1_form_savexls" target="_blank">
-										<button type="submit" class="btn btn-default">
-											<span class="glyphicon glyphicon-save"></span>&nbsp;Download
+									<a href="<?php echo site_url("/main/ap_unverified/divre0?type=xlsx&amp;server=cisco"); ?>"
+										class="btn btn-default <?php
+											if (empty($apDataCisco['list_data']['data'])) echo "disabled"; ?>"
+											target="_blank"><span class="glyphicon glyphicon-save"></span>&nbsp;Download
 											versi Excel
-										</button>
-									</form>
+									</a>
 									<table class="table table-striped table-bordered table-hover"
 										style="width: 100%;" id="table-cisco">
 										<thead>
@@ -163,7 +161,7 @@ function init_page() {
 										</thead>
 										<tbody>
 										<?php 
-										if (!empty($apDataCisco)) {
+										if (!empty($apDataCisco['list_data']['data'])) {
 											foreach ($apDataCisco['list_data']['data'] as $itemRow) {
 												echo "<tr>";
 												foreach ($itemRow as $colKey => $colValue) {
