@@ -45,7 +45,7 @@ class Main extends CI_Controller {
 	public function ap_unverified($param = "") {
 		if (! $this->load->cek_sesi ())
 			exit ();
-		$data ['useTables'] = true;		
+		$data ['useTablesUV'] = true;
 		
 		if ($param == "uv"){
 			$this->load->model('apuv');

@@ -28,14 +28,13 @@ function init_page() {
 		"scrollX" : true,
 		"scrollY": "800px",
 		"scrollCollapse": true,
-		responsive : true
+		"columnDefs": [
+           	{ "width": "400px", "targets": 6}
+        ],
+		responsive : true,
 	});
-
-	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
-	     var t = $($.fn.dataTable.tables( {visible: true, api: true} )).dataTable().api();
-	     t.columns.adjust();
-	} );
 }
+
 </script>
 <div id="page-wrapper">
 	<div class="row">
@@ -94,33 +93,8 @@ function init_page() {
 												<th align='center'>SN</th>
 												<th align='center'>LOCATION</th>
 												<th align='center'>STATUS</th>
-												<th align='center'>THROUGHPUT</th>
-												<th align='center'>HOLDING_TIME</th>
-												<th align='center'>JUMLAH_USER</th>
-												<th align='center'>UP_TIME</th>
-												<th align='center'>NSR</th>
-												<th align='center'>PROPINSI</th>
-												<th align='center'>KOTA</th>
-												<th align='center'>USER_AUTH</th>
-												<th align='center'>USER_ASOC</th>
-												<th align='center'>PO</th>
-												<th align='center'>JML_CLIENT</th>
-												<th align='center'>PROGRAM</th>
-												<th align='center'>REGIONAL</th>
-												<th align='center'>BSR</th>
-												<th align='center'>ONAIR_DATE</th>
-												<th align='center'>DIVISIO</th>
-												<th align='center'>ONAIR_LOC</th>
-												<th align='center'>BATCH_P</th>
-												<th align='center'>SEGMEN1</th>
-												<th align='center'>SEGMEN2</th>
-												<th align='center'>JENIS</th>
-												<th align='center'>UNDER_VERIFY</th>
-												<th align='center'>PARTNERSHIP</th>
 												<th align='center'>NMS_SOURCE</th>
-												<th align='center'>CONTR_NAME</th>
 												<th align='center'>P_CONTR_NAME</th>
-												<th align='center'>TAG</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -129,7 +103,7 @@ function init_page() {
 											foreach ($apDataAutelan['list_data']['data'] as $itemRow) {
 												echo "<tr>";
 												foreach ($itemRow as $colKey => $colValue) {
-													if ($colKey != 'id')
+													if ($colKey != 'id' && $colKey != 'jenis')
 														echo "<td>".$colValue."</td>\n";
 												}
 												echo "</tr>\n";
@@ -185,33 +159,8 @@ function init_page() {
 												<th align='center'>SN</th>
 												<th align='center'>LOCATION</th>
 												<th align='center'>STATUS</th>
-												<th align='center'>THROUGHPUT</th>
-												<th align='center'>HOLDING_TIME</th>
-												<th align='center'>JUMLAH_USER</th>
-												<th align='center'>UP_TIME</th>
-												<th align='center'>NSR</th>
-												<th align='center'>PROPINSI</th>
-												<th align='center'>KOTA</th>
-												<th align='center'>USER_AUTH</th>
-												<th align='center'>USER_ASOC</th>
-												<th align='center'>PO</th>
-												<th align='center'>JML_CLIENT</th>
-												<th align='center'>PROGRAM</th>
-												<th align='center'>REGIONAL</th>
-												<th align='center'>BSR</th>
-												<th align='center'>ONAIR_DATE</th>
-												<th align='center'>DIVISIO</th>
-												<th align='center'>ONAIR_LOC</th>
-												<th align='center'>BATCH_P</th>
-												<th align='center'>SEGMEN1</th>
-												<th align='center'>SEGMEN2</th>
-												<th align='center'>JENIS</th>
-												<th align='center'>UNDER_VERIFY</th>
-												<th align='center'>PARTNERSHIP</th>
 												<th align='center'>NMS_SOURCE</th>
 												<th align='center'>CONTR_NAME</th>
-												<th align='center'>P_CONTR_NAME</th>
-												<th align='center'>TAG</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -220,7 +169,7 @@ function init_page() {
 											foreach ($apDataCisco['list_data']['data'] as $itemRow) {
 												echo "<tr>";
 												foreach ($itemRow as $colKey => $colValue) {
-													if ($colKey != 'id')
+													if ($colKey != 'id' && $colKey != 'jenis')
 														echo "<td>".$colValue."</td>\n";
 												}
 												echo "</tr>\n";

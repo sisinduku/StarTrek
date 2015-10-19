@@ -53,3 +53,5 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['API'] = 'main/lihat_api';
+$route['UV'] = 'main/ap_unverified/uv';
+$route['DIV0'] = 'main/ap_unverified/divre0';

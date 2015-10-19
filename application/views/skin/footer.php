@@ -23,6 +23,10 @@
 		<script src="<?php echo base_url('/assets/js/dataTables.js'); ?>"></script>
 	<?php }?>
 	
+	 <?php if (!empty($useTablesUV)) {?>
+		<script src="<?php echo base_url('/assets/js/dataTablesUV.js'); ?>"></script>
+	<?php }?>
+	
 	<script>
 	$(document).ready( function () {
 	   if (typeof(init_page)==='function') {

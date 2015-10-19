@@ -114,31 +114,9 @@ class Oracledb extends CI_Model {
 						"sn" => $row->SN,
 						"location" => $row->LOCATION,
 						"status" => $row->STATUS,
-						"throughput" => $row->THROUGHPUT,
-						"holding_time" => $row->HOLDING_TIME,
-						"jumlah_user" => $row->JUMLAH_USER,
-						"up_time" => $row->UP_TIME,
-						"nsr" => $row->NSR,
-						"propinsi" => $row->PROPINSI,
-						"kota" => $row->KOTA,
-						"user_auth" => $row->USER_AUTH,
-						"user_asoc" => $row->USER_ASOC,
-						"po" => $row->PO,
-						"jml_client" => $row->JML_CLIENT,
-						"regional" => $row->REGIONAL,
-						"bsr" => $row->BSR,
-						"onair_date" => $row->ONAIR_DATE,
-						"divisio" => $row->DIVISIO,
-						"onair_loc" => $row->ONAIR_LOC,
-						"batch_p" => $row->BATCH_P,
-						"segmen1" => $row->SEGMEN1,
-						"segmen2" => $row->SEGMEN2,
 						"jenis" => $row->JENIS,
-						"under_verify" => $row->UNDER_VERIFY,
-						"partnership" => $row->PARTNERSHIP,
 						"nms_source" => $row->NMS_SOURCE,
-						"contr_name" => $row->CONTR_NAME,
-						"p_contr_name" => $row->P_CONTR_NAME
+						"p_or_contr_name" => $row->CONTR_NAME
 				);
 				// Memasukkan kedalam DB lokal
 				$data [$index ++] = $temp;
@@ -157,7 +135,7 @@ class Oracledb extends CI_Model {
 		$query = $this->oracle->query("SELECT b.witel,a.* FROM wifi_nms_ap_detail a, wifi_site_predefined b
 					WHERE b.periode in (SELECT max(periode) FROM wifi_site_predefined) AND a.loc_id=b.loc_id AND 
 						a.under_verify=1 AND b.divre='DIVRE IV' AND a.mac_address in
-						(SELECT mac_address FROM wifi_nms_ap_master_otl WHERE status='Up')
+						(SELECT mac_address FROM wifi_nms_ap_master_otl WHERE status='Up') AND a.status='Up' 
 					order by 1"
 				);
 		$result = array();
@@ -184,31 +162,9 @@ class Oracledb extends CI_Model {
 						"sn" => $row->SN,
 						"location" => $row->LOCATION,
 						"status" => $row->STATUS,
-						"throughput" => $row->THROUGHPUT,
-						"holding_time" => $row->HOLDING_TIME,
-						"jumlah_user" => $row->JUMLAH_USER,
-						"up_time" => $row->UP_TIME,
-						"nsr" => $row->NSR,
-						"propinsi" => $row->PROPINSI,
-						"kota" => $row->KOTA,
-						"user_auth" => $row->USER_AUTH,
-						"user_asoc" => $row->USER_ASOC,
-						"po" => $row->PO,
-						"jml_client" => $row->JML_CLIENT,
-						"regional" => $row->REGIONAL,
-						"bsr" => $row->BSR,
-						"onair_date" => $row->ONAIR_DATE,
-						"divisio" => $row->DIVISIO,
-						"onair_loc" => $row->ONAIR_LOC,
-						"batch_p" => $row->BATCH_P,
-						"segmen1" => $row->SEGMEN1,
-						"segmen2" => $row->SEGMEN2,
 						"jenis" => $row->JENIS,
-						"under_verify" => $row->UNDER_VERIFY,
-						"partnership" => $row->PARTNERSHIP,
 						"nms_source" => $row->NMS_SOURCE,
-						"contr_name" => $row->CONTR_NAME,
-						"p_contr_name" => $row->P_CONTR_NAME
+						"p_or_contr_name" => $row->P_CONTR_NAME
 				);
 				// Memasukkan kedalam DB lokal
 				$data [$index ++] = $temp;
@@ -287,6 +243,20 @@ class Oracledb extends CI_Model {
 			return $index;
 		}else{
 			return "kosong";
+		}
+	}
+	
+	public function getSindokom() {
+		$this->oracle = $this->load->database("sindokom", TRUE);
+		
+		$query = $this->sindokom->query("SELECT lradname,ethernetmac,macaddress,aplocation,serialnumber,ipaddress_address,apowningentityid 
+								FROM wirelessaccesspoint");
+		$result = array();
+		$index = 0;
+		if($query->num_rows() > 0){
+			foreach ($query->result() as $row){
+				
+			}
 		}
 	}
 }

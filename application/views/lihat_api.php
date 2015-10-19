@@ -214,7 +214,7 @@ function submitFormCari(event) {
 								<tr>
 									<td colspan="2"><input type="checkbox" class="chk_server" name="server[0]"
 										id="chk_server1"
-										value="10.16.254.70"> <label for="chk_server1">Cisco Sindokom</label></td>
+										value="10.16.254.102"> <label for="chk_server1">Cisco Sindokom</label></td>
 									<td colspan="1"><input type="checkbox" class="chk_server" name="server[1]"
 										id="chk_server2"
 										value="10.16.55.196"> <label for="chk_server2">Cisco Partnership</label></td>
@@ -296,7 +296,7 @@ function submitFormCari(event) {
 						<!-- DataTables Jateng Jogja -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Cisco Sindokom (10.16.254.70)</h3>
+								<h3 class="panel-title">Cisco Sindokom (10.16.254.102)</h3>
 							</div>
 							<div class="panel-body" id="tabpane_s0">
 								<div id="div_alert_s0" class="alert alert-danger"></div>

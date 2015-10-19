@@ -29,29 +29,6 @@ function do_export_xlsx_uv($apData, $apType, $apTitle) {
 			18,	// [H] Kolom SN
 			50,	// [I] Kolom Location => Idx 6
 			8,	// [J] Kolom Status
-			11, // [K] Kolom Throughput
-			13,	// [L] Kolom Holding time
-			13,	// [M] Kolom Jumlah user
-			14,	// [N] Kolom Uptime
-			12, // [O] Kolom NSR
-			21,	// [P] Kolom Provinsi
-			21,	// [Q] Kolom Kota
-			10,	// [R] Kolom User_auth
-			11,	// [S] Kolom User_asoc
-			20,	// [T] Kolom PO
-			11,	// [U] Kolom Jumlah client
-			11,	// [V] Kolom Program
-			10,	// [W] Kolom Regional
-			5,	// [X] Kolom BSR
-			12,	// [Y] Kolom Onair date
-			11,	// [Z] Kolom Divisio
-			10,	// [AA] Kolom Onair loc
-			9,	// [AB] Kolom Batch_p
-			21,	// [AC] Kolom Segmen1
-			21,	// [AD] Kolom Segmen2
-			12,	// [AE] Kolom Jenis
-			12,	// [AF] Kolom Under verify
-			12,	// [AG] Kolom Partnership
 			12,	// [AH] Kolom NMS_Source
 			15,	// [AI] Kolom Countr_name
 			15,	// [AI] Kolom P_contr_name

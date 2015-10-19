@@ -28,13 +28,12 @@ function init_page() {
 		"scrollX" : true,
 		"scrollY": "800px",
 		"scrollCollapse": true,
+		"columnDefs": [
+        	{ "width": "400px", "targets": 2}
+        ],
 		responsive : true
 	});
 
-	$('a[data-toggle="tab"]').on( 'shown.bs.tab', function (e) {
-	     var t = $($.fn.dataTable.tables( {visible: true, api: true} )).dataTable().api();
-	     t.columns.adjust();
-	} );
 }
 </script>
 <div id="page-wrapper">

@@ -16,6 +16,8 @@ class Apuv extends CI_Model {
 		if ($query->num_rows() > 0){
 			$index = 0;
 			foreach ( $fieldArray as $field ) {
+				if($field == 'p_or_contr_name')
+					$field = 'p_contr_name';
 				$data ['fields'][$index++] = $field;
 			}
 			$index = 0;
@@ -48,6 +50,8 @@ class Apuv extends CI_Model {
 		if ($query->num_rows() > 0){
 			$index = 0;
 			foreach ( $fieldArray as $field ) {
+				if($field == 'p_or_contr_name')
+					$field = 'contr_name';
 				$data ['fields'][$index++] = $field;
 			}
 			$index = 0;

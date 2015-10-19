@@ -36,7 +36,7 @@ class Parsing extends CI_Controller {
 	public function parseDivreCisco(){
 		$this->load->model("oracledb");
 		
-		$result = $this->oracledb->getgetDivreCisco();
+		$result = $this->oracledb->getDivreCisco();
 		echo $result;
 	}
 	
