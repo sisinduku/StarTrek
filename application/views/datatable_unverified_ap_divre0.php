@@ -28,6 +28,11 @@ function init_page() {
 		"scrollX" : true,
 		"scrollY": "800px",
 		"scrollCollapse": true,
+		"createdRow": function( row, data, dataIndex ) {
+		    if ( data.status == "Down" ) {
+		        $(row).addClass( 'row-down' );
+		    }
+		},
 		"columnDefs": [
         	{ "width": "400px", "targets": 2}
         ],
@@ -65,7 +70,8 @@ function init_page() {
 								if(isset($apDataAutelan['list_data'])){
 									echo '<div id="div_info_s0" class="alert alert-info">';
 									echo '<ul id="ul_s0">';
-									echo 'Total AP : '. $apDataAutelan['total'];
+									echo '<li>Total AP : '. $apDataAutelan['total']. '</li>';
+									echo '<li>AP Down : '. $apDataAutelan['down']. '</li>';
 									echo '</ul>';
 									echo '</div>';
 								}else{
@@ -92,6 +98,7 @@ function init_page() {
 												<th align='center'>AP_IP_ADDRESS</th>
 												<th align='center'>SN</th>
 												<th align='center'>STATUS</th>
+												<th align='center'>P_CONTR_NAME</th>
 												<th align='center'>NMS_SOURCE</th>
 											</tr>
 										</thead>
@@ -128,7 +135,8 @@ function init_page() {
 								if(isset($apDataCisco['list_data'])){
 									echo '<div id="div_info_s0" class="alert alert-info">';
 									echo '<ul id="ul_s0">';
-									echo 'Total AP : '. $apDataCisco['total'];
+									echo '<li>Total AP : '. $apDataCisco['total']. '</li>';
+									echo '<li>AP Down : '. $apDataCisco['down']. '</li>';
 									echo '</ul>';
 									echo '</div>';
 								}else{
@@ -155,6 +163,7 @@ function init_page() {
 												<th align='center'>AP_IP_ADDRESS</th>
 												<th align='center'>SN</th>
 												<th align='center'>STATUS</th>
+												<th align='center'>CONTR_NAME</th>
 												<th align='center'>NMS_SOURCE</th>
 											</tr>
 										</thead>

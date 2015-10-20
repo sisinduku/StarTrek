@@ -29,10 +29,9 @@ function do_export_xlsx_uv($apData, $apType, $apTitle) {
 			18,	// [H] Kolom SN
 			50,	// [I] Kolom Location => Idx 6
 			8,	// [J] Kolom Status
-			12,	// [AH] Kolom NMS_Source
-			15,	// [AI] Kolom Countr_name
-			15,	// [AI] Kolom P_contr_name
-			15	// [AJ] Kolom Jenis
+			12,	// [K] Kolom NMS_Source
+			15,	// [L] Kolom Countr_name / P_Countr_name
+			15	// [M] Kolom Jenis
 		);
 	} else if ($apType == "divre0") {
 		$wrapTextColIdx = array(2);
@@ -46,8 +45,9 @@ function do_export_xlsx_uv($apData, $apType, $apTitle) {
 				15, // [G] Kolom IP Address
 				19, // [H] Kolom SN
 				8,	// [I] Kolom Status
-				13,	// [J] Kolom Nms_source
-				15	// [K] Kolom type
+				15,	// [J] Kolom Countr_name / P_Countr_name
+				13,	// [K] Kolom Nms_source
+				15	// [L] Kolom type
 		);
 	}
 	

@@ -179,9 +179,11 @@ class Oracledb extends CI_Model {
 	public function getDivreCisco() {
 		$this->oracle = $this->load->database("oracle", TRUE);
 		
-		$query = $this->oracle->query("select loc_id, ap_name,location,mac_address,ap_ip_address,SN,status,nms_source 
-					from wifi_nms_ap_detail where (nms_source='NMS_JTN06' or nms_source='NMS_YGY11') and status='Up' and witel='WITEL'"
+		$query = $this->oracle->query("SELECT loc_id, ap_name,location,mac_address,ap_ip_address,SN,status,contr_name,nms_source FROM wifi_nms_ap_detail 
+					WHERE (nms_source='NMS_JTN06' or nms_source='NMS_YGY11') AND witel='WITEL' AND ap_name not like 'DIS%' 
+					AND ap_name not like 'RSK%' AND ap_name not like 'HLG%' order by 1"
 		);
+		
 		$result = array();
 		$index = 0;
 		if($query->num_rows() > 0){
@@ -196,6 +198,7 @@ class Oracledb extends CI_Model {
 						"ap_ip_address" => $row->AP_IP_ADDRESS,
 						"sn" => $row->SN,
 						"status" => $row->STATUS,
+						"p_or_contr_name" => $row->CONTR_NAME,
 						"nms_source" => $row->NMS_SOURCE,
 						"tipe" => "divrecisco"
 				);
@@ -211,14 +214,10 @@ class Oracledb extends CI_Model {
 	public function getDivreAutelan() {
 		$this->oracle = $this->load->database("oracle", TRUE);
 	
-		$query = $this->oracle->query("select loc_id, ap_name,location,mac_address,ap_ip_address,SN,status,nms_source 
-					from wifi_nms_ap_detail where 
-					(p_contr_name='WAC-D4-GBL01' or
-					p_contr_name='WAC-D4-GBL02' or
-					p_contr_name='WAC-D4-GBL03' or
-					p_contr_name='WAC-D4-KBU01' or
-					p_contr_name='WAC-D4-KBU03' or
-					p_contr_name='WAC-D4-KBU02') and status='Up' and witel='WITEL'"
+		$query = $this->oracle->query("select loc_id, ap_name,location,mac_address,ap_ip_address,SN,status,p_contr_name,nms_source FROM wifi_nms_ap_detail 
+				WHERE (p_contr_name='WAC-D4-GBL01' OR p_contr_name='WAC-D4-GBL02' OR p_contr_name='WAC-D4-GBL03' OR
+				p_contr_name='WAC-D4-KBU01' OR p_contr_name='WAC-D4-KBU03' OR p_contr_name='WAC-D4-KBU02') 
+				AND witel='WITEL' AND ap_name not like 'DIS%' AND ap_name not like 'RSK%' AND ap_name not like 'HLG%'"
 		);
 		$result = array();
 		$index = 0;
@@ -234,6 +233,7 @@ class Oracledb extends CI_Model {
 						"ap_ip_address" => $row->AP_IP_ADDRESS,
 						"sn" => $row->SN,
 						"status" => $row->STATUS,
+						"p_or_contr_name" => $row->P_CONTR_NAME,
 						"nms_source" => $row->NMS_SOURCE,
 						"tipe" => "divreautelan"
 				);

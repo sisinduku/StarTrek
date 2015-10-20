@@ -83,16 +83,22 @@ class Apuv extends CI_Model {
 		if ($query->num_rows() > 0){
 			$index = 0;
 			foreach ( $fieldArray as $field ) {
+				if($field == 'p_or_contr_name')
+					$field = 'p_contr_name';
 				$data ['fields'][$index++] = $field;
 			}
 			$index = 0;
 			foreach ( $query->result () as $row ) {
 				$data ['data'][$index++] = $row;
+				if (strtolower($row->status) == "down") {
+					$cntDown++;
+				}
 			}
 			$result = array (
 					'list_data' => $data,
 					'msg' => 'Success',
-					'total' => $index
+					'total' => $index,
+					'down' => $cntDown
 			);
 			return $result;
 		}else {
@@ -114,16 +120,24 @@ class Apuv extends CI_Model {
 		if ($query->num_rows() > 0){
 			$index = 0;
 			foreach ( $fieldArray as $field ) {
+				if($field == 'p_or_contr_name')
+					$field = 'contr_name';
 				$data ['fields'][$index++] = $field;
 			}
 			$index = 0;
+			$cntDown = 0;
 			foreach ( $query->result () as $row ) {
 				$data ['data'][$index++] = $row;
+				if (strtolower($row->status) == "down") {
+					$cntDown++;
+				}
 			}
+			
 			$result = array (
 					'list_data' => $data,
 					'msg' => 'Success',
-					'total' => $index
+					'total' => $index,
+					'down' => $cntDown
 			);
 			return $result;
 		}else {
