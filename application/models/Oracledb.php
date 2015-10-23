@@ -6,6 +6,39 @@
  */
 class Oracledb extends CI_Model {
 	private $oracle;
+	// array untuk mapping dari ip ke witel
+	private $mapingWitel = array('10.9.0' => 'SEMARANG', '10.9.1' => 'SEMARANG', '10.9.2' => 'SEMARANG',
+			'10.9.3' => 'SEMARANG', '10.9.4' => 'SEMARANG', '10.9.5' => 'SEMARANG', '10.9.6' => 'SEMARANG',
+			'10.9.15' => 'SEMARANG', '10.9.15' => 'PEKALONGAN', '10.9.17' => 'PEKALONGAN', '10.9.19' => 'PEKALONGAN',
+			'10.9.20' => 'PEKALONGAN', '10.9.26' => 'KUDUS', '10.9.30' => 'SEMARANG', '10.9.31' => 'SEMARANG',
+			'10.9.32' => 'SEMARANG', '10.9.33' => 'SEMARANG', '10.9.34' => 'SEMARANG', '10.9.36' => 'SEMARANG',
+			'10.9.37' => 'SEMARANG', '10.9.39' => 'SEMARANG', '10.9.40' => 'MAGELANG', '10.9.55' => 'SEMARANG',
+			'10.9.64'=> 'SEMARANG', '10.9.65' => 'SEMARANG', '10.9.7' => 'YOGYAKARTA', '10.9.8' => 'MAGELANG',
+			'10.9.9' => 'MAGELANG', '10.9.10' => 'YOGYAKARTA', '10.9.11' => 'YOGYAKARTA', '10.9.12' => 'YOGYAKARTA',
+			'10.9.13' => 'PURWOKERTO', '10.9.14' => 'PURWOKERTO', '10.9.16' => 'YOGYAKARTA', '10.9.18' => 'YOGYAKARTA',
+			'10.9.21' => 'SOLO', '10.9.22' => 'SOLO', '10.9.23' => 'SOLO', '10.9.24' => 'SOLO', '10.9.25' => 'SOLO',
+			'10.9.29' => 'YOGYAKARTA', '10.9.35' => 'YOGYAKARTA', '10.9.38' => 'YOGYAKARTA', '10.9.41' => 'YOGYAKARTA',
+			'10.9.42' => 'YOGYAKARTA', '10.9.43' => 'YOGYAKARTA', '10.9.44' => 'YOGYAKARTA', '10.9.45' => 'YOGYAKARTA',
+			'10.9.46' => 'YOGYAKARTA', '10.9.48' => 'YOGYAKARTA', '10.9.49' => 'YOGYAKARTA', '10.9.56' => 'SOLO',
+			'10.9.57' => 'MAGELANG', '10.9.58' => 'SOLO', '10.9.59' => 'YOGYAKARTA', '10.9.60' => 'SOLO',
+			'10.9.61' => 'SOLO', '10.9.62' => 'SOLO', '10.9.74' => 'MAGELANG', '10.9.99' => 'YOGYAKARTA',
+			'10.3.0' => 'SEMARANG', '10.3.1' => 'SEMARANG', '10.3.3' => 'SEMARANG', '10.3.4' => 'SEMARANG', 
+			'10.3.20' => 'KUDUS', '10.3.21' => 'KUDUS', '10.3.22' => 'KUDUS', '10.4.10' => 'SOLO', '10.4.11' => 'SOLO',
+			'10.4.12' => 'SOLO', '10.4.13' => 'SOLO', '10.4.14' => 'SOLO', '10.4.15' => 'SOLO', '10.4.30' => 'PURWOKERTO', 
+			'10.4.32' => 'PURWOKERTO', '10.4.20' => 'MAGELANG', '10.4.21' => 'MAGELANG', '10.4.22' => 'MAGELANG',
+			'10.4.40' => 'YOGYAKARTA', '10.4.41' => 'YOGYAKARTA', '10.4.42' => 'YOGYAKARTA', '10.4.44' => 'YOGYAKARTA', 
+			'10.4.46' => 'YOGYAKARTA', '10.15.50' => 'KUDUS', '10.15.51' => 'KUDUS', '10.15.52' => 'KUDUS', 
+			'10.15.53' => 'KUDUS', '10.15.71' => 'KUDUS', '10.15.10' => 'KUDUS', '10.15.11' => 'KUDUS', 
+			'10.15.12' => 'KUDUS', '10.15.13' => 'KUDUS', '10.15.14' => 'KUDUS', '10.17.54' => 'SOLO', 
+			'10.17.55' => 'SOLO', '10.17.56' => 'SOLO', '10.17.57' => 'SOLO', '10.17.19' => 'SOLO', '10.17.20' => 'SOLO',
+			'10.17.21' => 'SOLO', '10.17.22' => 'SOLO', '10.15.23' => 'PURWOKERTO', '10.15.24' => 'PURWOKERTO', 
+			'10.15.25' => 'PURWOKERTO', '10.15.26' => 'PURWOKERTO', '10.15.27' => 'PURWOKERTO', '10.15.28' => 'PURWOKERTO',
+			'10.15.15' => 'PURWOKERTO', '10.15.16' => 'PURWOKERTO', '10.15.17' => 'PURWOKERTO', '10.15.18' => 'PURWOKERTO',
+			'10.16.29' => 'PEKALONGAN', '10.16.30' => 'PEKALONGAN', '10.16.31' => 'PEKALONGAN', '10.16.32' => 'PEKALONGAN', 
+			'10.16.33' => 'PEKALONGAN', '10.16.34' => 'PEKALONGAN', '10.16.35' => 'PEKALONGAN', '10.16.36' => 'PEKALONGAN',
+			'0.0.0' => 'Not Set'
+	);
+	
 	public function __construct() {
 		// Call the CI_Model constructor
 		parent::__construct ();
@@ -185,17 +218,28 @@ class Oracledb extends CI_Model {
 		);
 		
 		$result = array();
+		$ip = array();
 		$index = 0;
 		if($query->num_rows() > 0){
 			foreach ($query->result () as $row){
 				if($row->LOC_ID == null)
 					$row->LOC_ID = "Not Set";
+				// Mapping ip ke witel
+				$ip = explode(".", $row->AP_IP_ADDRESS);
+				$vlan = $ip[0].".";
+				$vlan .= $ip[1].".";
+				$vlan .= $ip[2];
+				if(array_key_exists($vlan, $this->mapingWitel))
+					$witel = $this->mapingWitel[$vlan];
+				else 
+					$witel = 'Not Set';
 				$temp = array(
 						"loc_id" => $row->LOC_ID,
 						"ap_name" => $row->AP_NAME,
 						"location" => $row->LOCATION,
 						"mac_address" => $row->MAC_ADDRESS,
 						"ap_ip_address" => $row->AP_IP_ADDRESS,
+						"witel" => $witel,
 						"sn" => $row->SN,
 						"status" => $row->STATUS,
 						"p_or_contr_name" => $row->CONTR_NAME,
@@ -220,17 +264,25 @@ class Oracledb extends CI_Model {
 				AND witel='WITEL' AND ap_name not like 'DIS%' AND ap_name not like 'RSK%' AND ap_name not like 'HLG%'"
 		);
 		$result = array();
+		$ip = array();
 		$index = 0;
 		if($query->num_rows() > 0){
 			foreach ($query->result () as $row){
 				if($row->LOC_ID == null)
 					$row->LOC_ID = "Not Set";
+				// Mapping ip ke witel
+				$ip = explode(".", $row->AP_IP_ADDRESS);
+				$vlan = $ip[0].".";
+				$vlan .= $ip[1].".";
+				$vlan .= $ip[2];
+				$witel = $this->mapingWitel[$vlan];
 				$temp = array(
 						"loc_id" => $row->LOC_ID,
 						"ap_name" => $row->AP_NAME,
 						"location" => $row->LOCATION,
 						"mac_address" => $row->MAC_ADDRESS,
 						"ap_ip_address" => $row->AP_IP_ADDRESS,
+						"witel" => $witel,
 						"sn" => $row->SN,
 						"status" => $row->STATUS,
 						"p_or_contr_name" => $row->P_CONTR_NAME,
@@ -243,20 +295,6 @@ class Oracledb extends CI_Model {
 			return $index;
 		}else{
 			return "kosong";
-		}
-	}
-	
-	public function getSindokom() {
-		$this->oracle = $this->load->database("sindokom", TRUE);
-		
-		$query = $this->sindokom->query("SELECT lradname,ethernetmac,macaddress,aplocation,serialnumber,ipaddress_address,apowningentityid 
-								FROM wirelessaccesspoint");
-		$result = array();
-		$index = 0;
-		if($query->num_rows() > 0){
-			foreach ($query->result() as $row){
-				
-			}
 		}
 	}
 }

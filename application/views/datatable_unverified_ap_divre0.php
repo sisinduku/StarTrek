@@ -96,6 +96,7 @@ function init_page() {
 												<th align='center'>LOCATION</th>
 												<th align='center'>MAC_ADDRESS</th>
 												<th align='center'>AP_IP_ADDRESS</th>
+												<th align='center'>WITEL</th>
 												<th align='center'>SN</th>
 												<th align='center'>STATUS</th>
 												<th align='center'>P_CONTR_NAME</th>
@@ -161,6 +162,7 @@ function init_page() {
 												<th align='center'>LOCATION</th>
 												<th align='center'>MAC_ADDRESS</th>
 												<th align='center'>AP_IP_ADDRESS</th>
+												<th align='center'>WITEL</th>
 												<th align='center'>SN</th>
 												<th align='center'>STATUS</th>
 												<th align='center'>CONTR_NAME</th>

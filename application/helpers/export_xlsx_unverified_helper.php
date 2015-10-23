@@ -43,11 +43,12 @@ function do_export_xlsx_uv($apData, $apType, $apTitle) {
 				45,	// [E] Kolom Location
 				19,	// [F] Kolom MAC Address
 				15, // [G] Kolom IP Address
-				19, // [H] Kolom SN
-				8,	// [I] Kolom Status
-				15,	// [J] Kolom Countr_name / P_Countr_name
-				13,	// [K] Kolom Nms_source
-				15	// [L] Kolom type
+				15, // [H] Kolom Witel
+				19, // [I] Kolom SN
+				8,	// [J] Kolom Status
+				15,	// [K] Kolom Countr_name / P_Countr_name
+				13,	// [L] Kolom Nms_source
+				15	// [M] Kolom type
 		);
 	}
 	
